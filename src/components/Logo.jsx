@@ -1,3 +1,6 @@
+import Image from 'next/future/image'
+import logo from '../images/logo.png'
+
 export function Logomark(props) {
   return (
     <svg viewBox="0 0 40 40" aria-hidden="true" {...props}>
@@ -22,9 +25,6 @@ export function Logomark(props) {
 //   )
 // }
 
-export const Logo = () => (
-  <div>
-    <div className="font-logo">Ninana Technologies</div>
-    <div>Private Limited</div>
-  </div>
-)
+export function Logo({ className = '' }) {
+  return <Image className={'h-32 ' + className} src={logo} alt="" unoptimized />
+}

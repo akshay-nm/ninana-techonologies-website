@@ -3,6 +3,7 @@
 
 // import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
+import Link from 'next/link'
 // import { TextField } from '@/components/Fields'
 // import { Logo, Logomark } from '@/components/Logo'
 // import { NavLinks } from '@/components/NavLinks'
@@ -43,7 +44,7 @@ export function Footer() {
             </div>
           </div> 
         </div> */}
-        <div className="flex flex-col items-center border-t border-gray-200 pt-8 pb-12 md:flex-row-reverse md:justify-between md:pt-6">
+        <div className="flex flex-col items-start border-t border-gray-200 pt-8 pb-12 md:flex-row-reverse md:justify-between md:pt-6">
           {/* <form className="flex w-full justify-center md:w-auto">
             <TextField
               type="email"
@@ -62,21 +63,26 @@ export function Footer() {
             className="text-xs leading-5 text-gray-800"
             style={{ fontSize: 10 }}
           >
-            <div>CIN: U72900GJ2019PTC107365</div>
             <div className="leading-none">
               Ninana Technologies Private Limited
-              <br />
+              {/* <br />
               <span style={{ fontSize: 9 }}>
                 Previously known as{' '}
                 <strong>Sdiot Technologies Private Limited</strong>
-              </span>
+              </span> */}
             </div>
             <div>Plot No. 660/1, Sector No 30, Gandhinagar 382030, Gujarat</div>
-            <div>+91 844 798 1252</div>
-            <div>contact@ninana.in</div>
+            <div>
+              <Link href="tel=+918447981252">+91 844 798 1252</Link>
+            </div>
+            <div>
+              <Link href="mailto=contact@ninana.in">contact@ninana.in</Link>
+            </div>
+            <div>CIN: U72900GJ2019PTC107365</div>
           </div>
           <p className="mt-6 text-sm text-gray-500 md:mt-0">
-            &copy; Copyright {new Date().getFullYear()}. All rights reserved.
+            &copy; Copyright {new Date().getFullYear()} Ninana Technologies
+            Private Limited. All rights reserved.
           </p>
         </div>
       </Container>
