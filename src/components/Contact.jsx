@@ -195,7 +195,7 @@ export default function Contact() {
                         Call us directly
                       </p>
                       <div className="flex items-center space-x-2 text-xl font-semibold text-slate-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-slate-100 dark:group-hover:text-blue-400">
-                        <span>+91 844 798 1252</span>
+                        <span>+91 844 798 1258</span>
                         <ArrowUpRight className="h-5 w-5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
                       </div>
                     </div>
