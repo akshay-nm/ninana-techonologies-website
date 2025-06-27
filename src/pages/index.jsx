@@ -2,9 +2,12 @@ import Head from 'next/head'
 
 // import { CallToAction } from '@/components/CallToAction'
 // import { Faqs } from '@/components/Faqs'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
-import { Hero } from '@/components/Hero'
+import NewFooter from '@/components/NewFooter'
+import Navbar from '@/components/Navbar'
+import NewHero from '@/components/NewHero'
+import Products from '@/components/Products'
+import About from '@/components/About'
+import Contact from '@/components/Contact'
 // import { Pricing } from '@/components/Pricing'
 // import { PrimaryFeatures } from '@/components/PrimaryFeatures'
 // import { Reviews } from '@/components/Reviews'
@@ -20,11 +23,14 @@ export default function Home() {
           content="A tech firm based in Gandhinagar Gujarat. We are hiring!"
         />
       </Head>
-      <Header />
+      <Navbar />
       <main>
-        <Hero />
+        <NewHero />
+        <Products />
+        <About />
+        <Contact />
       </main>
-      <Footer />
+      <NewFooter />
     </>
   )
 }
