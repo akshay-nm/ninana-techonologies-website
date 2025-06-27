@@ -56,7 +56,7 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        className={`fixed top-0 z-50 w-full border transition-all duration-300 ${
           scrolled
             ? 'border-b border-slate-200/50 bg-white/80 backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-900/80'
             : 'bg-white/60 backdrop-blur-sm dark:bg-slate-900/60'
