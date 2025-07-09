@@ -150,60 +150,7 @@ export default function Contact() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            className="mx-auto grid max-w-2xl grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8"
           >
-            {/* Phone Card */}
-            <motion.div
-              variants={cardVariants}
-              whileHover={{
-                y: -8,
-                scale: 1.02,
-                transition: { duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] },
-              }}
-              whileTap={{
-                scale: 0.98,
-                transition: { duration: 0.1 },
-              }}
-            >
-              <a
-                href="tel:+918447981252"
-                className="group block"
-                aria-label="Call us at +91 844 798 1252"
-              >
-                <div className="relative overflow-hidden rounded-3xl border border-slate-200/40 bg-white/60 p-8 shadow-lg shadow-slate-900/5 backdrop-blur-xl transition-all duration-500 hover:border-blue-300/60 hover:bg-white/80 hover:shadow-xl hover:shadow-slate-900/10 dark:border-slate-700/40 dark:bg-slate-800/60 dark:shadow-slate-100/5 dark:hover:border-blue-600/60 dark:hover:bg-slate-800/80 dark:hover:shadow-slate-100/10">
-                  {/* Premium glow effect */}
-                  <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-blue-500/20 via-cyan-400/20 to-blue-500/20 opacity-0 blur transition-opacity duration-500 group-hover:opacity-100"></div>
-
-                  {/* Card gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-400/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-
-                  <div className="relative flex flex-col items-center space-y-6">
-                    {/* Enhanced icon */}
-                    <motion.div
-                      className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/25"
-                      whileHover={{
-                        rotate: [0, -10, 10, 0],
-                        transition: { duration: 0.5 },
-                      }}
-                    >
-                      <Phone className="h-7 w-7 text-white" />
-                      <div className="absolute -inset-2 rounded-2xl bg-blue-500/20 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100"></div>
-                    </motion.div>
-
-                    <div className="text-center">
-                      <p className="mb-2 text-sm font-medium text-slate-500 dark:text-slate-400">
-                        Call us directly
-                      </p>
-                      <div className="flex items-center space-x-2 text-xl font-semibold text-slate-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-slate-100 dark:group-hover:text-blue-400">
-                        <span>+91 844 798 1258</span>
-                        <ArrowUpRight className="h-5 w-5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </motion.div>
-
             {/* Email Card */}
             <motion.div
               variants={cardVariants}
