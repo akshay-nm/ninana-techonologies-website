@@ -196,7 +196,7 @@ export default function About() {
                     </span>{' '}
                     for immersive architectural visualization,{' '}
                     <span className="font-semibold text-purple-600 dark:text-purple-400">
-                      Vision
+                      Pragati
                     </span>{' '}
                     for intelligent project management, and{' '}
                     <span className="font-semibold text-emerald-600 dark:text-emerald-400">

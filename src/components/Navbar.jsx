@@ -32,7 +32,7 @@ export default function Navbar() {
       description: 'Architectural visualization',
     },
     {
-      name: 'Vision',
+      name: 'Pragati',
       href: 'https://pragati.ninana.in/',
       description: 'Project management',
     },

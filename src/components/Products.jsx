@@ -22,7 +22,7 @@ export default function Products() {
       accent: 'blue',
     },
     {
-      name: 'Vision',
+      name: 'Pragati',
       description:
         'Construction project management platform for tracking demands, site progress, finances, and inventory.',
       image: '/vision.png',
