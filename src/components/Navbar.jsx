@@ -33,7 +33,7 @@ export default function Navbar() {
     },
     {
       name: 'Vision',
-      href: 'https://vision.ninana.in',
+      href: 'https://pragati.ninana.in/',
       description: 'Project management',
     },
     {

@@ -26,7 +26,7 @@ export default function Products() {
       description:
         'Construction project management platform for tracking demands, site progress, finances, and inventory.',
       image: '/vision.png',
-      link: 'https://vision.ninana.in',
+      link: 'https://pragati.ninana.in/',
       gradient: 'from-purple-500/10 to-pink-400/10',
       accent: 'purple',
     },
