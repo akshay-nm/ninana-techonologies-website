@@ -25,7 +25,7 @@ export default function Products() {
       name: 'Pragati',
       description:
         'Construction project management platform for tracking demands, site progress, finances, and inventory.',
-      image: '/vision.png',
+      image: '/pragati.png',
       link: 'https://pragati.ninana.in/',
       gradient: 'from-purple-500/10 to-pink-400/10',
       accent: 'purple',
