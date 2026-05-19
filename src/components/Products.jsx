@@ -31,11 +31,11 @@ export default function Products() {
       accent: 'purple',
     },
     {
-      name: 'Vesta',
+      name: 'Wasp',
       description:
-        'A premium real estate CRM for residential and commercial builders, helping teams manage finances and customer relationships.',
-      image: '/vesta.png',
-      link: 'https://vesta.ninana.in',
+        'The operating layer for legal practice — encrypted matter rooms, audited AI, drafting, conflicts, calendar, and billing, built for the way Indian law firms actually work.',
+      image: '/wasp.png',
+      link: 'https://wasp.ninana.in/',
       gradient: 'from-emerald-500/10 to-teal-400/10',
       accent: 'emerald',
     },

@@ -37,9 +37,9 @@ export default function Navbar() {
       description: 'Project management',
     },
     {
-      name: 'Vesta',
-      href: 'https://vesta.ninana.in',
-      description: 'Real estate CRM',
+      name: 'Wasp',
+      href: 'https://wasp.ninana.in/',
+      description: 'Legal practice platform',
     },
   ]
 

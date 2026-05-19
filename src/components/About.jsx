@@ -128,10 +128,10 @@ export default function About() {
               >
                 Pioneering the future of{' '}
                 <span className="font-medium text-slate-800 dark:text-slate-200">
-                  construction technology
+                  technology
                 </span>{' '}
-                through innovative platforms that transform how the industry
-                operates.
+                through innovative platforms that transform how industries
+                operate.
               </motion.p>
 
               {/* Subtle decorative element */}
@@ -176,9 +176,9 @@ export default function About() {
                     <span className="font-medium text-slate-900 dark:text-slate-100">
                       next-generation platforms
                     </span>{' '}
-                    that streamline complex workflows, enhance visual
+                    that streamline complex workflows, elevate user
                     experiences, and accelerate business growth across
-                    construction and real estate ecosystems.
+                    industries.
                   </p>
                 </div>
               </motion.div>
@@ -190,7 +190,7 @@ export default function About() {
                 <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 opacity-0 blur transition-opacity duration-500 group-hover:opacity-100"></div>
                 <div className="relative">
                   <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-                    Our flagship ecosystem—
+                    Our product ecosystem—
                     <span className="font-semibold text-blue-600 dark:text-blue-400">
                       Vivid
                     </span>{' '}
@@ -200,10 +200,9 @@ export default function About() {
                     </span>{' '}
                     for intelligent project management, and{' '}
                     <span className="font-semibold text-emerald-600 dark:text-emerald-400">
-                      Vesta
+                      Wasp
                     </span>{' '}
-                    for comprehensive real estate operations—empowers
-                    professionals to{' '}
+                    for modern legal practice—empowers professionals to{' '}
                     <span className="font-medium text-slate-900 dark:text-slate-100">
                       build the future, today.
                     </span>
@@ -223,7 +222,7 @@ export default function About() {
                     <span className="font-medium text-slate-900 dark:text-slate-100">
                       architecting the infrastructure
                     </span>{' '}
-                    that enables smarter construction, faster delivery, and more
+                    that enables smarter operations, faster delivery, and more
                     sustainable growth for the industries that shape our world.
                   </p>
                 </div>
