@@ -103,6 +103,11 @@ module.exports = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+  			ink: {
+  				DEFAULT: '#05080f',
+  				soft: '#0a101d',
+  				raise: '#101a2e'
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

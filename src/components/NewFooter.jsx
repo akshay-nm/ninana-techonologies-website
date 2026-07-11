@@ -1,73 +1,60 @@
 'use client'
 
-import { motion } from 'framer-motion'
-
 export default function NewFooter() {
   return (
-    <footer className="relative bg-black/80">
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-rb-navy-dark/50 to-transparent"></div>
-
-      {/* Subtle separator */}
-      <div className="absolute top-0 left-1/2 h-px w-20 -translate-x-1/2 transform bg-gradient-to-r from-transparent via-gray-800/30 to-transparent"></div>
-
-      <div className="container relative z-10 mx-auto px-4 py-10">
-        <div className="mx-auto max-w-6xl">
-          {/* Two-column layout on desktop, stacked on mobile */}
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-12">
-            {/* Left column: Copyright */}
-            <motion.div
-              className="space-y-3 text-center lg:text-left"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-            >
-              <h3 className="mb-2 text-base font-medium text-gray-300">
-                Ninana Technologies
-              </h3>
-              <p className="text-sm font-light text-gray-500">
-                © 2025 Ninana Technologies Private Limited. All rights reserved.
-              </p>
-            </motion.div>
-
-            {/* Right column: Company details */}
-            <motion.div
-              className="space-y-2 text-center lg:text-right"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-            >
-              <div className="space-y-1">
-                <p className="text-sm font-medium text-gray-300">
-                  Ninana Technologies Private Limited
-                </p>
-                <p className="text-xs font-light text-gray-500">
-                  Plot No. 660/1, Sector No 30,
-                  <br />
-                  Gandhinagar 382030, Gujarat
-                </p>
-              </div>
-
-              <div className="pt-1">
-                <p className="text-xs font-light text-gray-500">
-                  <a
-                    href="mailto:contact@ninana.in"
-                    className="transition-colors hover:text-gray-300"
-                  >
-                    contact@ninana.in
-                  </a>
-                </p>
-              </div>
-
-              <div className="pt-1">
-                <p className="text-xs font-light text-gray-600">
-                  CIN: U72900GJ2019PTC107365
-                </p>
-              </div>
-            </motion.div>
+    <footer className="relative border-t border-slate-900/10 dark:border-white/5">
+      <div className="container mx-auto px-4 py-12">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-3">
+          <div className="space-y-2 text-center lg:text-left">
+            <h3 className="text-base font-medium text-slate-800 dark:text-slate-200">
+              Ninana Technologies
+            </h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400">
+              Software for industries that still run on paper.
+            </p>
           </div>
+
+          <div className="space-y-1 text-center">
+            <div className="font-mono text-xs uppercase tracking-[0.2em] text-slate-600 dark:text-slate-500">
+              Products
+            </div>
+            <div className="flex items-center justify-center gap-6 pt-2 text-sm">
+              <a href="https://vivid.ninana.in" target="_blank" rel="noopener noreferrer" className="text-slate-500 transition hover:text-cyan-600 dark:text-slate-400 dark:hover:text-cyan-400">
+                Vivid
+              </a>
+              <a href="https://pragati.ninana.in/" target="_blank" rel="noopener noreferrer" className="text-slate-500 transition hover:text-orange-600 dark:text-slate-400 dark:hover:text-orange-400">
+                Pragati
+              </a>
+              <a href="https://wasp.ninana.in/" target="_blank" rel="noopener noreferrer" className="text-slate-500 transition hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400">
+                Wasp
+              </a>
+            </div>
+          </div>
+
+          <div className="space-y-1 text-center lg:text-right">
+            <p className="text-sm text-slate-500 dark:text-slate-400">
+              Plot No. 660/1, Sector No 30,
+              <br />
+              Gandhinagar 382030, Gujarat
+            </p>
+            <p className="pt-1 text-sm">
+              <a
+                href="mailto:contact@ninana.in"
+                className="text-slate-500 transition hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+              >
+                contact@ninana.in
+              </a>
+            </p>
+            <p className="pt-1 text-xs text-slate-600 dark:text-slate-500">
+              CIN: U72900GJ2019PTC107365
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-10 border-t border-slate-900/10 pt-6 dark:border-white/5 text-center">
+          <p className="text-xs text-slate-600 dark:text-slate-500">
+            © 2026 Ninana Technologies Private Limited. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

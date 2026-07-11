@@ -26,5 +26,13 @@ export function Logomark(props) {
 // }
 
 export function Logo({ className = '' }) {
-  return <Image className={'h-32 ' + className} src={logo} alt="" unoptimized />
+  return (
+    <Image
+      className={className}
+      src={logo}
+      alt="Ninana Technologies"
+      unoptimized
+      priority
+    />
+  )
 }
