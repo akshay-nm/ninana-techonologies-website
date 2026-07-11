@@ -41,7 +41,29 @@ export default function NewHero() {
             {...enter(0.25)}
           >
             Software for industries that{' '}
-            <span className="text-slate-500 dark:text-slate-400">still run on paper.</span>
+            <span className="text-slate-500 dark:text-slate-400">
+              still run on{' '}
+              <span className="relative whitespace-nowrap">
+                paper.
+                <motion.svg
+                  viewBox="0 0 200 14"
+                  preserveAspectRatio="none"
+                  className="absolute -bottom-2 left-0 h-3 w-full text-cyan-500 dark:text-cyan-400"
+                  aria-hidden="true"
+                >
+                  <motion.path
+                    d="M4 9 C 50 3, 120 12, 196 6"
+                    stroke="currentColor"
+                    strokeWidth={5}
+                    strokeLinecap="round"
+                    fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{ delay: 1.2, duration: 0.6, ease: 'easeOut' }}
+                  />
+                </motion.svg>
+              </span>
+            </span>
           </motion.h1>
 
           <motion.p
