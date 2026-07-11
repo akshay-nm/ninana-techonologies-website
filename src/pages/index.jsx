@@ -3,8 +3,10 @@ import Head from 'next/head'
 import NewFooter from '@/components/NewFooter'
 import Navbar from '@/components/Navbar'
 import NewHero from '@/components/NewHero'
-import ProductStory from '@/components/ProductStory'
+import Manifesto from '@/components/Manifesto'
+import ProductIndex from '@/components/ProductIndex'
 import About from '@/components/About'
+import Careers from '@/components/Careers'
 import Contact from '@/components/Contact'
 
 export default function Home() {
@@ -14,14 +16,16 @@ export default function Home() {
         <title>Ninana Technologies Private Limited</title>
         <meta
           name="description"
-          content="Ninana builds Vivid, Pragati, and Wasp — software for real estate, construction, and legal practice. Based in Gandhinagar, Gujarat. We're hiring!"
+          content="Ninana is a product studio in Gandhinagar building Vivid, Pragati, and Wasp. Software for real estate, construction, and legal practice. We're hiring."
         />
       </Head>
       <Navbar />
       <main>
         <NewHero />
-        <ProductStory />
+        <Manifesto />
+        <ProductIndex />
         <About />
+        <Careers />
         <Contact />
       </main>
       <NewFooter />

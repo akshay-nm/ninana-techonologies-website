@@ -48,9 +48,8 @@ export default function NewHero() {
             className="mb-10 max-w-xl text-lg leading-relaxed text-slate-600 dark:text-slate-400 sm:text-xl"
             {...enter(0.4)}
           >
-            We build deep, opinionated products for real estate, construction,
-            and legal practice — three industries where the tools haven&apos;t
-            caught up with the work.
+            Ninana is a small product studio in Gandhinagar. We build
+            software for construction, real estate, and legal practice.
           </motion.p>
 
           <motion.div className="flex flex-wrap items-center gap-4" {...enter(0.55)}>
@@ -58,7 +57,7 @@ export default function NewHero() {
               href="#products"
               className="inline-flex items-center gap-2 rounded-full bg-cyan-500 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-cyan-400 dark:bg-cyan-400 dark:text-ink dark:hover:bg-cyan-300"
             >
-              Explore the products
+              See what we build
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>

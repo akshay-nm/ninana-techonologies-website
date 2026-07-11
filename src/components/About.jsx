@@ -10,34 +10,32 @@ const fadeUp = {
 }
 
 const STATS = [
-  { value: '2020', label: 'Founded' },
+  { value: '2019', label: 'Founded' },
   { value: '3', label: 'Products in production' },
-  { value: 'Gandhinagar', label: 'Built in Gujarat, India' },
-  { value: 'Hiring', label: 'Engineers & designers' },
+  { value: 'Gandhinagar', label: 'Gujarat, India' },
+  { value: 'In-house', label: 'Design, engineering & 3D' },
 ]
 
 export default function About() {
   return (
-    <section id="about" className="relative scroll-mt-14 border-t border-slate-900/10 py-24 dark:border-white/5 lg:py-32">
+    <section id="company" className="relative scroll-mt-14 border-t border-slate-900/10 py-24 dark:border-white/5 lg:py-32">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-20">
           <motion.div {...fadeUp}>
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400">
-              About
+              How we build
             </p>
             <h2 className="mb-6 text-4xl font-medium leading-[1.1] tracking-[-0.02em] text-slate-900 dark:text-white sm:text-5xl">
-              A small studio building serious tools.
+              Close to the work.
             </h2>
             <p className="mb-5 max-w-lg text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
-              Ninana Technologies is a product company from Gandhinagar. We pick
-              industries where the day-to-day work still lives on paper, phone
-              calls, and spreadsheets — then build the software layer they
-              deserve.
+              Every product starts with time inside the industry it&apos;s
+              built for. Construction sites, sales offices, law chambers. We
+              learn how the work happens before we write code for it.
             </p>
             <p className="max-w-lg text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
-              We go deep rather than wide: each product is built alongside the
-              people who use it — real-estate sales teams, site engineers, and
-              practicing lawyers.
+              Design, engineering, and 3D all happen in-house. A small team
+              owns each product end to end.
             </p>
           </motion.div>
 

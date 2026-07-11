@@ -21,11 +21,11 @@ export default function Contact() {
             Contact
           </p>
           <h2 className="mb-6 text-4xl font-medium leading-[1.1] tracking-[-0.02em] text-slate-900 dark:text-white sm:text-5xl">
-            Tell us what you&apos;re building.
+            Get in touch.
           </h2>
           <p className="mb-10 text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
-            Whether you want to use one of our products, partner with us, or
-            join the team — we read everything.
+            Partnerships, products, joining the team. One inbox, and we
+            read everything.
           </p>
 
           <a
@@ -39,7 +39,10 @@ export default function Contact() {
           </a>
 
           <p className="mt-8 text-sm text-slate-500 dark:text-slate-400">
-            Based in Gandhinagar, Gujarat · We usually reply within a day
+            Looking for a product demo? Go straight to{' '}
+            <a href="https://vivid.ninana.in" target="_blank" rel="noopener noreferrer" className="font-medium text-cyan-600 hover:underline dark:text-cyan-400">Vivid</a>,{' '}
+            <a href="https://pragati.ninana.in/" target="_blank" rel="noopener noreferrer" className="font-medium text-orange-600 hover:underline dark:text-orange-400">Pragati</a>, or{' '}
+            <a href="https://wasp.ninana.in/" target="_blank" rel="noopener noreferrer" className="font-medium text-amber-600 hover:underline dark:text-amber-400">Wasp</a>.
           </p>
         </motion.div>
       </div>

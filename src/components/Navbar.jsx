@@ -35,7 +35,8 @@ const PRODUCTS = [
 ]
 
 const LINKS = [
-  { name: 'About', id: 'about' },
+  { name: 'Company', id: 'company' },
+  { name: 'Careers', id: 'careers' },
   { name: 'Contact', id: 'contact' },
 ]
 
