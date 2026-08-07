@@ -18,7 +18,7 @@ export default function NewFooter() {
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-slate-600 dark:text-slate-500">
               Products
             </div>
-            <div className="flex items-center justify-center gap-6 pt-2 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-2 text-sm">
               <a href="https://vivid.ninana.in" target="_blank" rel="noopener noreferrer" className="text-slate-500 transition hover:text-cyan-600 dark:text-slate-400 dark:hover:text-cyan-400">
                 Vivid
               </a>
@@ -27,6 +27,9 @@ export default function NewFooter() {
               </a>
               <a href="https://wasp.ninana.in/" target="_blank" rel="noopener noreferrer" className="text-slate-500 transition hover:text-amber-600 dark:text-slate-400 dark:hover:text-amber-400">
                 Wasp
+              </a>
+              <a href="https://optimus.ninana.in" target="_blank" rel="noopener noreferrer" className="text-slate-500 transition hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400">
+                Optimus
               </a>
             </div>
           </div>

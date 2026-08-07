@@ -93,13 +93,14 @@ export default function NewHero() {
           </motion.div>
 
           <motion.div
-            className="mt-16 flex items-center gap-8 text-sm text-slate-500 dark:text-slate-400"
+            className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-5 text-sm text-slate-500 dark:text-slate-400"
             {...enter(0.7)}
           >
             {[
               ['Vivid', 'real estate', 'text-cyan-600 dark:text-cyan-400'],
               ['Pragati', 'construction', 'text-orange-600 dark:text-orange-400'],
               ['Wasp', 'legal', 'text-amber-600 dark:text-amber-400'],
+              ['Optimus', 'exam prep', 'text-teal-600 dark:text-teal-400'],
             ].map(([name, industry, accent]) => (
               <a
                 key={name}
