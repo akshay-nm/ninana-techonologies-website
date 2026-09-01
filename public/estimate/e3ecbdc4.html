@@ -1,0 +1,408 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Purnea HAS Bid Estimate</title><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"></head><body>
+<style>:root{
+ --paper:#fdfcfa; --surface:#f4f2ee; --band:#ebe8e2; --ink:#1a1d1f; --muted:#5f6669;
+ --rule:#d7d3cb; --rule-strong:#a8a49b; --accent:#1d4e6b; --accent-soft:#e6eef3;
+ --up:#8a2f24; --down:#17604a; --gold:#8a6d21;
+}
+@media (prefers-color-scheme:dark){
+ :root:not([data-theme="light"]){
+  --paper:#16181a; --surface:#1e2124; --band:#24282b; --ink:#e8e6e2; --muted:#9aa1a5;
+  --rule:#33383c; --rule-strong:#565d62; --accent:#8fc4e2; --accent-soft:#1c2c36;
+  --up:#e39184; --down:#7fd0b2; --gold:#d6b45c;
+ }
+}
+:root[data-theme="dark"]{
+ --paper:#16181a; --surface:#1e2124; --band:#24282b; --ink:#e8e6e2; --muted:#9aa1a5;
+ --rule:#33383c; --rule-strong:#565d62; --accent:#8fc4e2; --accent-soft:#1c2c36;
+ --up:#e39184; --down:#7fd0b2; --gold:#d6b45c;
+}
+
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink);
+ font-family:"IBM Plex Sans","Helvetica Neue",Arial,system-ui,sans-serif;
+ font-size:14px; line-height:1.5; -webkit-text-size-adjust:100%}
+.doc{max-width:1240px; margin:0 auto; padding:0 20px 80px}
+
+h1,h2,h3,.pname{font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif; text-wrap:balance}
+h2{font-size:22px; margin:0 0 14px; font-weight:600}
+h3{font-size:16px; font-weight:600; margin:26px 0 8px; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
+p{margin:0 0 10px; max-width:78ch}
+a{color:inherit}
+
+.cap{font-family:inherit; font-size:11.5px; font-weight:400; letter-spacing:.02em;
+ color:var(--muted); text-transform:none}
+
+/* ---------------- cover ---------------- */
+.cover{padding:56px 0 40px; border-bottom:2px solid var(--rule-strong); margin-bottom:8px}
+.crest{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:22px}
+.cover h1{font-size:40px; margin:0 0 6px; letter-spacing:-.015em; font-weight:600}
+.cover .sub{font-size:17px; color:var(--muted); font-family:Georgia,serif; margin:0 0 24px; max-width:60ch}
+.rule{height:1px; background:var(--rule); margin:0 0 20px}
+table.meta{border-collapse:collapse; width:100%; margin-bottom:26px}
+table.meta th{text-align:left; font-weight:500; color:var(--muted); font-size:12px;
+ letter-spacing:.03em; text-transform:uppercase; padding:6px 20px 6px 0; vertical-align:top;
+ white-space:nowrap; width:1%}
+table.meta td{padding:6px 0; vertical-align:top; border-bottom:1px solid var(--rule)}
+.note{background:var(--surface); border-left:3px solid var(--accent); padding:16px 20px; border-radius:2px}
+.note p:last-child{margin-bottom:0}
+
+/* ---------------- contents ---------------- */
+.toc ol{list-style:none; margin:0; padding:0; counter-reset:t}
+.toc li{counter-increment:t; border-bottom:1px solid var(--rule)}
+.toc a{display:flex; gap:14px; align-items:baseline; padding:9px 0; text-decoration:none}
+.toc a:hover span{text-decoration:underline}
+.toc a::before{content:counter(t); font-variant-numeric:tabular-nums; color:var(--muted);
+ font-size:12px; min-width:1.6em}
+.toc a span{font-weight:600}
+.toc a em{font-style:normal; color:var(--muted); font-size:13px}
+
+/* ---------------- part head ---------------- */
+.sheet{padding:34px 0 10px}
+.phead{display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;
+ border-top:2px solid var(--ink); padding-top:12px; margin-bottom:10px}
+.phead.alt{border-top-color:var(--rule-strong)}
+.phead.sum{border-top-color:var(--accent)}
+.pnum{font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:600;
+ background:var(--ink); color:var(--paper); padding:3px 9px; border-radius:2px; white-space:nowrap}
+.phead.alt .pnum{background:var(--rule-strong)}
+.phead.sum .pnum{background:var(--accent)}
+.pname{font-size:21px; font-weight:600; flex:1 1 auto; min-width:200px}
+.pkind{font-size:11.5px; color:var(--muted); letter-spacing:.03em; text-transform:uppercase}
+.boq{font-size:12.5px; color:var(--muted); max-width:96ch; margin-bottom:4px}
+
+/* ---------------- tables ---------------- */
+.tw{overflow-x:auto; margin:8px 0 4px; border:1px solid var(--rule); border-radius:2px}
+table.rate,table.cmp{border-collapse:collapse; width:100%; font-size:13px;
+ font-variant-numeric:tabular-nums}
+table.rate th,table.cmp th{background:var(--band); text-align:left; font-weight:600;
+ font-size:11.5px; letter-spacing:.03em; padding:8px 10px; vertical-align:bottom;
+ border-bottom:1px solid var(--rule-strong); line-height:1.25}
+table.rate td,table.cmp td{padding:7px 10px; border-bottom:1px solid var(--rule); vertical-align:top}
+table.rate tbody tr:nth-child(even) td,table.cmp tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--surface) 55%,transparent)}
+th.n,td.n{text-align:right; white-space:nowrap}
+th.u,td.u{text-align:left; white-space:nowrap; color:var(--muted); font-size:12px}
+th.ser,td.ser{white-space:nowrap; color:var(--muted); font-size:12px; font-variant-numeric:tabular-nums}
+td.b{font-weight:600}
+th.grp{text-align:center; border-left:1px solid var(--rule-strong); border-right:1px solid var(--rule-strong)}
+th.book,td.book{background:color-mix(in srgb,var(--band) 60%,transparent); color:var(--muted)}
+th.md,td.md{background:var(--accent-soft)}
+th.dept,td.dept{border-left:1px solid var(--rule-strong)}
+td.na{color:var(--muted); font-size:11.5px; font-style:italic; text-align:right}
+table.cmp td.n .r{display:block; font-size:11.5px; color:var(--muted)}
+table.cmp td.n .a{display:block; font-weight:600}
+table.cmp td.md .a{color:var(--accent)}
+tr.tot td{background:var(--band) !important; font-weight:600; border-top:1px solid var(--rule-strong);
+ border-bottom:2px solid var(--rule-strong)}
+tr.tot td .a{font-weight:700}
+
+/* ---------------- percentage strip ---------------- */
+.pct{margin:14px 0 4px; padding:14px 16px; background:var(--surface); border-radius:2px;
+ border:1px solid var(--rule)}
+.pctlab{font-size:12px; color:var(--muted); margin-bottom:10px}
+.pctrow{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:8px}
+.chip{display:flex; flex-direction:column; gap:2px; padding:8px 14px; border-radius:2px;
+ background:var(--paper); border:1px solid var(--rule); min-width:104px}
+.chip .cl{font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+.chip .cv{font-size:19px; font-weight:700; font-variant-numeric:tabular-nums}
+.chip.up{border-left:3px solid var(--up)} .chip.up .cv{color:var(--up)}
+.chip.down{border-left:3px solid var(--down)} .chip.down .cv{color:var(--down)}
+.pct p{margin:0}
+.freep{margin-top:12px; padding:10px 14px; background:var(--surface); border-radius:2px;
+ border-left:3px solid var(--gold); max-width:none}
+
+/* ---------------- summary ---------------- */
+table.build td:first-child{font-weight:500}
+table.build tr.sub td{border-top:1px solid var(--rule-strong); font-weight:600;
+ background:color-mix(in srgb,var(--band) 50%,transparent)}
+table.build tr.lakh td{background:var(--band); font-weight:600; font-size:14px}
+.reco{margin:20px 0 12px; padding:20px 22px; background:var(--accent-soft);
+ border-left:4px solid var(--accent); border-radius:2px}
+.recolab{font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:6px}
+.recov{font-size:27px; font-weight:700; font-family:Georgia,serif; color:var(--accent);
+ font-variant-numeric:tabular-nums; line-height:1.2}
+.recoc{font-size:13px; color:var(--muted); margin-top:4px; font-variant-numeric:tabular-nums}
+
+.pfoot{display:none}
+
+/* ---------------- narrow ---------------- */
+@media (max-width:720px){
+ body{font-size:13.5px}
+ .doc{padding:0 12px 60px}
+ .cover h1{font-size:30px}
+ .pname{font-size:18px}
+ table.rate,table.cmp{font-size:12px}
+ .recov{font-size:21px}
+}
+
+/* ---------------- print ---------------- */
+@media print{
+ @page{size:A4 landscape; margin:11mm 10mm 15mm}
+ :root{--paper:#fff; --surface:#f5f4f1; --band:#eceae5; --ink:#000; --muted:#4a4f52;
+  --rule:#c8c4bc; --rule-strong:#8d8880; --accent:#12405c; --accent-soft:#e9f0f4;
+  --up:#75261d; --down:#0f4d3b; --gold:#6b5417}
+ body{background:#fff; color:#000; font-size:8.4pt}
+ .doc{max-width:none; padding:0}
+ .sheet{break-before:page; padding:0}
+ .cover{break-after:page; padding:0 0 6mm}
+ .toc{break-before:auto}
+ h3{margin:5mm 0 2mm}
+ .tw{overflow:visible; border:0}
+ table.rate,table.cmp{font-size:8pt}
+ table.rate th,table.cmp th{padding:1.4mm 2mm}
+ table.rate td,table.cmp td{padding:1.2mm 2mm}
+ thead{display:table-header-group}
+ tbody tr{break-inside:avoid}
+ .phead{break-after:avoid}
+ .pct,.reco,.note{break-inside:avoid}
+ a{text-decoration:none; color:inherit}
+ .pfoot{display:block; position:fixed; bottom:5mm; left:0; right:0; text-align:center;
+  font-size:7pt; color:#4a4f52; border-top:.4pt solid #c8c4bc; padding-top:1.4mm}
+}
+
+.sec{padding:28px 0 6px}.kv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}.kv .k{background:var(--surface);border:1px solid var(--rule);padding:12px 14px;border-radius:2px}.kv .k .l{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.kv .k .v{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;font-family:Georgia,serif}.kv .k.md{border-left:3px solid var(--accent)}.kv .k.md .v{color:var(--accent)}.callout{background:var(--surface);border-left:3px solid var(--gold);padding:14px 18px;margin:14px 0;border-radius:2px}.callout.red{border-left-color:var(--up)}p,li{max-width:80ch}ul{padding-left:20px}td.tag{font-size:11px;color:var(--muted);white-space:nowrap}@media(max-width:720px){.kv{grid-template-columns:1fr}}</style>
+<div class="doc">
+<header class="cover"><div class="crest">Ninana Technologies &middot; Estimation Services</div><h1>Purnea HAS Bid Estimate</h1>
+<p class="sub">Two hardened aircraft shelters with traverses, pavements and services at AF Station Purnea. Revision 2.</p><div class="rule"></div>
+<table class="meta"><tr><th>Work</th><td>Construction of certain technical buildings and allied services at AF Stn Purnea under AGE (I) (AF) Purnea</td></tr>
+<tr><th>CA number</th><td>CE(AF)SZ/PUR/ of 2026-2027</td></tr><tr><th>Form of contract</th><td>Lump sum, IAFW-2159, GCC IAFW-2249 (1989 print). Part I design and build, Parts II to XIII pre-priced, Part XIV item rate</td></tr>
+<tr><th>Rate authority</th><td>MES SSR 2020 Part II, re-based to the bid date; market rates 2026 delivered Purnea</td></tr>
+<tr><th>Prepared by</th><td>Ninana Technologies, for the bidding contractor</td></tr><tr><th>Date of issue</th><td>28 August 2026 &middot; Rev 2</td></tr></table>
+<div class="note"><p><strong>How to read this.</strong> Section 1 gives the number and the range. Section 2 says what each case assumes. Section 3 sets the estimate against the department. Section 4 is the review list: every place judgment was applied rather than a document read. The annexures carry the full measurement schedule, the pre-priced schedules, the specification register and the information request, so every rupee can be traced to a dimension or a clause.</p>
+<p>The department's advertised figure was quarantined until section 3. No rate, quantity or allowance was chosen or adjusted by reference to it.</p></div></header>
+<section class="sheet toc"><h2>Contents</h2><ol>
+<li><a href="#s1"><span>The number</span></a></li>
+<li><a href="#s2"><span>The three cases and what moved</span></a></li>
+<li><a href="#s3"><span>Against the department</span></a></li>
+<li><a href="#s4"><span>For the estimator&rsquo;s review</span></a></li>
+<li><a href="#s5"><span>Part I by section</span></a></li>
+<li><a href="#s6"><span>Parts II to XIII, rate sheet</span></a></li>
+<li><a href="#a1"><span>Annexure A: Part I measurement schedule</span></a></li>
+<li><a href="#a2"><span>Annexure B: Part XIV</span></a></li>
+<li><a href="#a3"><span>Annexure C: contract obligations</span></a></li>
+<li><a href="#a4"><span>Annexure D: information request</span></a></li>
+</ol></section>
+<section class="sheet" id="s1"><div class="phead sum"><div class="pnum">1</div><div class="pname">The number</div><div class="pkind">Both shelters, all Parts</div></div>
+<div class="kv"><div class="k"><div class="l">Low</div><div class="v">Rs 88.88 cr</div></div><div class="k md"><div class="l">Central</div><div class="v">Rs 112.49 cr</div></div><div class="k"><div class="l">High</div><div class="v">Rs 124.92 cr</div></div></div>
+<div class="tw"><table class="cmp build"><thead><tr><th>Rs lakh</th><th class="n">Low</th><th class="n md">Central</th><th class="n">High</th></tr></thead><tbody>
+<tr class=""><td>Part I, building work</td><td class="n">5,112.02</td><td class="n md">6,766.30</td><td class="n">7,293.76</td></tr>
+<tr class=""><td>Parts II to XIII, pre-priced</td><td class="n">1,462.93</td><td class="n md">1,512.34</td><td class="n">1,564.12</td></tr>
+<tr class=""><td>Part XIV, miscellaneous</td><td class="n">306.29</td><td class="n md">307.29</td><td class="n">308.35</td></tr>
+<tr class="sub"><td>Works cost</td><td class="n">6,881.24</td><td class="n md">8,585.93</td><td class="n">9,166.22</td></tr>
+<tr class=""><td>Contract obligations</td><td class="n">882.00</td><td class="n md">882.00</td><td class="n">882.00</td></tr>
+<tr class="sub"><td>Cost of execution</td><td class="n">7,763.24</td><td class="n md">9,467.93</td><td class="n">10,048.22</td></tr>
+<tr class=""><td>Head office overhead</td><td class="n">310.53</td><td class="n md">473.40</td><td class="n">602.89</td></tr>
+<tr class=""><td>Risk</td><td class="n">232.90</td><td class="n md">378.72</td><td class="n">602.89</td></tr>
+<tr class=""><td>Profit</td><td class="n">581.47</td><td class="n md">928.80</td><td class="n">1,237.94</td></tr>
+<tr class="tot"><td>Bid</td><td class="n">8,888.13</td><td class="n md">11,248.85</td><td class="n">12,491.95</td></tr>
+</tbody></table></div>
+<div class="reco"><div class="recolab">Recommended quoting range</div><div class="recov">Rs 88.88 crore &nbsp;to&nbsp; Rs 124.92 crore</div><div class="recoc">Central Rs 112.49 crore</div></div>
+<p class="cap">Re-basing from SSR 2020 (effective 01 April 2021) to the bid plus half of a 660 day programme, 5.90 years at 4, 5 and 6 percent per annum. The five years to the bid date are unrecoverable. Part of the programme movement may be reimbursed under Condition 63 of IAFW-2249, see R-16.</p></section>
+<section class="sheet" id="s2"><div class="phead"><div class="pnum">2</div><div class="pname">The three cases and what moved</div><div class="pkind">Revision 2 against revision 1</div></div>
+<div class="tw"><table class="cmp"><thead><tr><th></th><th>Low</th><th class="md">Central</th><th>High</th></tr></thead><tbody>
+<tr><td>Shell thickness</td><td>250 mm</td><td class="md">350 mm</td><td>500 mm</td></tr>
+<tr><td>Shell reinforcement</td><td>120 kg/cum</td><td class="md">180 kg/cum</td><td>250 kg/cum</td></tr>
+<tr><td>Pile working load</td><td>90 t, if the confirmatory investigation permits</td><td class="md">43.6 t, soil report mean for 800 dia x 20 m</td><td>43.6 t</td></tr>
+<tr><td>Earth quantities</td><td>as measured</td><td class="md">as measured</td><td>measured + 15 pc</td></tr>
+<tr><td>Cost movement from SSR 2020</td><td>4 pc pa</td><td class="md">5 pc pa</td><td>6 pc pa</td></tr>
+<tr><td>Overhead, risk, profit</td><td>4, 3, 7 pc</td><td class="md">5, 4, 9 pc</td><td>6, 6, 11 pc</td></tr>
+</tbody></table></div>
+<h3>What changed from revision 1</h3><p>Revision 1 came to Rs 47.2 crore central and was withdrawn: 61 percent of Part I rested on assumed quantities and no measurement schedule existed. Revision 2 reads everything, opens all 60 drawings, and measures. Three readings moved the number, all from documents, none from judgment.</p>
+<div class="callout"><p><strong>The blast door.</strong> Particular specification clause 17: 28.0 x 8.14 m, four leaves of 6.45 x 8.0 m, 12 mm plate both faces, rated for a 50 kg MK4 bomb, fully motorised, design vetted by an IIT. The pen is double entry, so two per pen, four in all. Revision 1 had two 3 m doors at Rs 8 lakh. Revision 2 carries four at Rs 124.50 lakh each.</p>
+<p><strong>The VIFT wings.</strong> Read from the plan and the longitudinal section together: each wing is 56.87 m long and 16.8 m wide with a vertical inner face 14.715 m high, a 36 degree outer slope and a 3.76 m toe. Four wings. 36,702 cum of earth and 227 m of 14.7 m retaining wall. The two sheets agree on the base width to 1.4 percent.</p>
+<p><strong>The ground.</strong> The soil report gives a net safe load of 43.6 t on an 800 dia x 20 m bored pile, averaged over eight boreholes. Against the loads now measured that is 1136 piles, 22,720 m of boring. Revision 1 had assumed 200.</p></div>
+<p class="cap">Programme corrected to 660 days (Phase I of 90 days sits inside it), not 750. Site plans are not missing from the pack: the list of drawings says they are to be inspected in the office of CE (AF) Shillong Zone or AGE(I) Purnea.</p></section>
+<section class="sheet" id="s3"><div class="phead alt"><div class="pnum">3</div><div class="pname">Against the department</div><div class="pkind">Ring fenced: written after the number was locked</div></div>
+<p>The department advertised <strong>Rs 9,986.00 lakh</strong> at par market. Our central bid is Rs 11,248.85 lakh, <strong>113 percent</strong> of it. The low case is Rs 8,888.13 lakh, 89 percent.</p>
+<div class="callout red"><p><strong>The one number that decides it.</strong> Parts II to XIII, where the department has itemised, we land at a ratio of 1.16 to their pre-priced amount, which is five years of cost movement and nothing else. The whole of the remaining difference is inside the piling and the VIFT wall. On the soil report&rsquo;s own pile capacity of 43.6 t the contract prices above the department. If the confirmatory investigation the L1 bidder must run permits 90 t per pile, it prices below. The bidder is obliged to establish that number himself before design, and it is the first thing to settle.</p></div>
+<h3>Two errors in the department schedule, for pre-bid query</h3><p><strong>Part VIII item 6.</strong> 45,000 sqm of soffit formwork against 480 cum of RCC and 11,600 kg of steel in the same Part; at 100 mm that formwork needs 4,500 cum, and the steel works out at 24 kg per cum. The item carries Rs 252.80 lakh, 79 percent of Part VIII. Quantities are provisional and re-measurable, so a percentage loaded on Part VIII is measured back off. A trap, not an opportunity.</p><p><strong>Part II item 1.</strong> 130 sqm of surface excavation on a site with about 15,500 sqm of new pavement and two shelters.</p></section>
+<section class="sheet" id="s4"><div class="phead sum"><div class="pnum">4</div><div class="pname">For the estimator&rsquo;s review</div><div class="pkind">Every place judgment replaced a document</div></div><div class="tw"><table class="cmp"><thead><tr><th class="ser">Ref</th><th>Judgment</th><th>Lines</th></tr></thead><tbody>
+<tr><td class="ser">R-1</td><td>Shell 350 mm central, 250 to 500</td><td class="tag">S1, S2</td></tr>
+<tr><td class="ser">R-2</td><td>Shell reinforcement 180 kg/cum, 0.57 pc each way each face</td><td class="tag">S2</td></tr>
+<tr><td class="ser">R-3</td><td>Pile working load 43.6 t from the soil report mean for 800 x 20 m; piled throughout; 1136 piles. The largest single judgment in the estimate</td><td class="tag">F8 to F11</td></tr>
+<tr><td class="ser">R-4</td><td>VIFT as RCC counterfort wall: stem 1000 to 500, counterforts 400 at 4.0 m, cap 5.0 x 1.2, end wall 1500, toe wall 400. Embankment on vibro stone columns</td><td class="tag">F3 to F7, E7</td></tr>
+<tr><td class="ser">R-5</td><td>Shelter raft 1200 thick on piles</td><td class="tag">F1</td></tr>
+<tr><td class="ser">R-6</td><td>Door mounts as RCC portals, legs 3 x 1 x 12, head 3 x 2 x 28</td><td class="tag">S8, S9</td></tr>
+<tr><td class="ser">R-7</td><td>Blast door at Rs 124.50 lakh each: 62 t fabricated steel at Rs 1.45 lakh per tonne plus drives, controls, design and IIT vetting</td><td class="tag">D6</td></tr>
+<tr><td class="ser">R-8</td><td>Earth mound profile: straight from crown cover 1200 to annexe wall top 6000 to toe 1000; no end slopes because doors close both ends</td><td class="tag">E1</td></tr>
+<tr><td class="ser">R-9</td><td>Pile rate Rs 6,500 per metre boring and concrete; stone columns Rs 1,500 per sqm; curved soffit formwork Rs 2,200 per sqm; aggregate Rs 2,400 per cum ex Pakur</td><td class="tag">rates</td></tr>
+<tr><td class="ser">R-10</td><td>Parking sheds Rs 27 lakh each and water stagings Rs 25 lakh each as allowances, no drawings held</td><td class="tag">X1, X2</td></tr>
+<tr><td class="ser">R-11</td><td>Obligations Rs 882 lakh over twelve heads; the plant regime, site power by DG, and staffing are the largest</td><td class="tag">OB</td></tr>
+<tr><td class="ser">R-12</td><td>Overhead, risk and profit 5, 4 and 9 pc central</td><td class="tag">build up</td></tr>
+<tr><td class="ser">R-13</td><td>Annexe room widths scaled at 1:200, not dimensioned</td><td class="tag">A4, A5, K2, K3</td></tr>
+<tr><td class="ser">R-14</td><td>BOQ 1.03 &quot;water staging&quot; read as the 25 kL RCC static tank of TD249, the only tank sheet in the drawing list; an elevated staging at Rs 25 lakh is carried in the high case</td><td class="tag">X2</td></tr>
+<tr><td class="ser">R-15</td><td>Soak well diameter 2.5 m and depth 3.3 m; TD236 sheet 2 sizing table not read</td><td class="tag">Part XIV 26</td></tr>
+<tr><td class="ser">R-16</td><td>Price variation. No clause excludes Condition 63 of IAFW-2249, and the minimum wages note on page 95 refers to reimbursement of PV for wage escalation, so PV appears payable. The estimate takes no credit for it. If the 0.9 years of programme movement were fully recovered the central bid would fall about Rs 3.5 crore; a PV formula recovers only part. The Condition 63 text with amendments 1 to 49 is not in the pack and should be obtained</td><td class="tag">re-basing</td></tr>
+</tbody></table></div><p class="cap">Of Part I at the central case, Rs 4,068.90 lakh (60 percent) rests on lines tagged ASSUMED in the measurement schedule. The design does not exist, so pile count, wall sections and raft thickness are sized here rather than read. The schedule shows the arithmetic so a checker can substitute his own section and re-extend.</p></section>
+<section class="sheet" id="s5"><div class="phead"><div class="pnum">5</div><div class="pname">Part I by section</div><div class="pkind">Both shelters, Rs lakh</div></div><div class="tw"><table class="cmp"><thead><tr><th>Section</th><th class="n">Low</th><th class="n md">Central</th><th class="n">High</th></tr></thead><tbody>
+<tr><td>Earthwork and ground</td><td class="n">336.80</td><td class="n md">337.04</td><td class="n">378.14</td></tr>
+<tr><td>Foundation, piles and VIFT</td><td class="n">3,418.95</td><td class="n md">4,930.48</td><td class="n">5,162.23</td></tr>
+<tr><td>Arch shell, end walls, door mounts</td><td class="n">450.30</td><td class="n md">586.85</td><td class="n">834.09</td></tr>
+<tr><td>Annexe structure</td><td class="n">104.00</td><td class="n md">109.78</td><td class="n">115.84</td></tr>
+<tr><td>Aircraft bay pavement</td><td class="n">70.97</td><td class="n md">70.97</td><td class="n">72.02</td></tr>
+<tr><td>Finishes</td><td class="n">106.00</td><td class="n md">106.18</td><td class="n">106.45</td></tr>
+<tr><td>Doors, shutters, blast doors</td><td class="n">513.11</td><td class="n md">513.11</td><td class="n">513.11</td></tr>
+<tr><td>Sanitary and drainage</td><td class="n">7.89</td><td class="n md">7.89</td><td class="n">7.89</td></tr>
+<tr><td>Allowances, sheds and stagings</td><td class="n">104.00</td><td class="n md">104.00</td><td class="n">104.00</td></tr>
+<tr class="tot"><td>Part I</td><td class="n">5,112.02</td><td class="n md">6,766.30</td><td class="n">7,293.76</td></tr></tbody></table></div></section>
+<section class="sheet" id="s6"><div class="phead"><div class="pnum">6</div><div class="pname">Parts II to XIII</div><div class="pkind">Our cost against the MES pre-priced amount</div></div><div class="tw"><table class="cmp"><thead><tr><th class="ser">Part</th><th>Name</th><th class="n dept">MES pre-priced</th><th class="n">Low</th><th class="n md">Central</th><th class="n">High</th><th class="n">Pc, central</th></tr></thead><tbody>
+<tr><td class="ser">II</td><td>Site clearance, development, earth work</td><td class="n dept">59.71</td><td class="n">74.81</td><td class="n md">79.05</td><td class="n">83.48</td><td class="n" style="color:var(--up)">+32.4</td></tr>
+<tr><td class="ser">III</td><td>Internal electrification, flame proof</td><td class="n dept">20.77</td><td class="n">26.18</td><td class="n md">27.70</td><td class="n">29.29</td><td class="n" style="color:var(--up)">+33.4</td></tr>
+<tr><td class="ser">IV</td><td>Internal water supply</td><td class="n dept">0.67</td><td class="n">0.86</td><td class="n md">0.90</td><td class="n">0.94</td><td class="n" style="color:var(--up)">+33.5</td></tr>
+<tr><td class="ser">V</td><td>Tarmac, link taxi track</td><td class="n dept">647.48</td><td class="n">633.45</td><td class="n md">634.91</td><td class="n">636.44</td><td class="n" style="color:var(--down)">-1.9</td></tr>
+<tr><td class="ser">VI</td><td>Road, path, culvert</td><td class="n dept">179.73</td><td class="n">226.37</td><td class="n md">239.48</td><td class="n">253.21</td><td class="n" style="color:var(--up)">+33.2</td></tr>
+<tr><td class="ser">VII</td><td>Sewage disposal</td><td class="n dept">3.05</td><td class="n">3.81</td><td class="n md">4.02</td><td class="n">4.24</td><td class="n" style="color:var(--up)">+31.6</td></tr>
+<tr><td class="ser">VIII</td><td>Area drainage</td><td class="n dept">320.35</td><td class="n">403.82</td><td class="n md">427.29</td><td class="n">451.89</td><td class="n" style="color:var(--up)">+33.4</td></tr>
+<tr><td class="ser">IX</td><td>Lightning protection</td><td class="n dept">11.22</td><td class="n">14.15</td><td class="n md">14.97</td><td class="n">15.83</td><td class="n" style="color:var(--up)">+33.4</td></tr>
+<tr><td class="ser">X</td><td>External water supply</td><td class="n dept">6.55</td><td class="n">8.26</td><td class="n md">8.74</td><td class="n">9.24</td><td class="n" style="color:var(--up)">+33.4</td></tr>
+<tr><td class="ser">XI</td><td>External electric supply</td><td class="n dept">55.28</td><td class="n">69.65</td><td class="n md">73.62</td><td class="n">77.79</td><td class="n" style="color:var(--up)">+33.2</td></tr>
+<tr><td class="ser">XII</td><td>CCTV and LAN</td><td class="n dept">0.47</td><td class="n">0.59</td><td class="n md">0.62</td><td class="n">0.66</td><td class="n" style="color:var(--up)">+33.4</td></tr>
+<tr><td class="ser">XIII</td><td>Water cooler</td><td class="n dept">0.79</td><td class="n">0.99</td><td class="n md">1.05</td><td class="n">1.11</td><td class="n" style="color:var(--up)">+33.4</td></tr>
+<tr class="tot"><td></td><td>Total</td><td class="n dept">1,306.07</td><td class="n">1,462.93</td><td class="n md">1,512.34</td><td class="n">1,564.12</td><td></td></tr></tbody></table></div><p class="cap">96 of 118 rates match SSR 2020 verbatim and are adopted at book and re-based. 22 are analogous rates, mainly the Part V pavement, built from market prices and not re-based. Percentages are cost only. Part VIII carries the quantity error noted in section 3.</p></section>
+<section class="sheet" id="a1"><div class="phead alt"><div class="pnum">A</div><div class="pname">Part I measurement schedule</div><div class="pkind">Central case, 82 lines, both shelters</div></div>
+<p class="cap">Tags: PRINTED, a dimension printed on a sheet; SCALED, read at the stated scale; DERIVED, arithmetic on printed dimensions; SPEC or DBR, fixed by the specification or design basis report; ASSUMED, concept design judgment, on the review list.</p>
+<div class="tw"><table class="rate"><thead><tr><th class="ser">Ref</th><th>Item</th><th class="n">Qty</th><th class="u">Unit</th><th>Dimensions and arithmetic</th><th class="n">Rate</th><th class="n">Amount</th><th>Basis</th><th>Source</th></tr></thead><tbody>
+<tr><td class="ser">E1</td><td>Earth mound over shelter, placed and compacted</td><td class="n">7,880.44</td><td class="u">Cum</td><td class="tag">half base 27.73 (17.50+10.23), crown cover 1.20, toe 1.00, length 30.0 ; profile crown 10.00 -&gt; wall top 6.00 at 17.5 -&gt; toe 1.00 at 27.73; area by integration = 131.3 sqm x 30.0 m x 2</td><td class="n">620.00</td><td class="n b">48,85,873</td><td class="tag">market</td><td class="tag">DERIVED (PRINTED 1200, 6000, 1000, 10230)</td></tr>
+<tr><td class="ser">E2</td><td>Earth in VIFT wings</td><td class="n">36,702.4</td><td class="u">Cum</td><td class="tag">wall 14.715, top 1.5, slope 36 deg run 15.07, toe 3.764, length 56.8726 ; (1.5x14.715 + 15.07x(14.715+3.764)/2) = 161.3 sqm x 56.8726 x 4 wings</td><td class="n">620.00</td><td class="n b">2,27,55,488</td><td class="tag">market</td><td class="tag">DERIVED (PRINTED dims)</td></tr>
+<tr><td class="ser">E3</td><td>Excavation for shelter raft and bay floor, 1.5 m deep</td><td class="n">3,150</td><td class="u">Cum</td><td class="tag">35.0 x 30.0 x 1.5 ; 1050 x 1.5 x 2</td><td class="n">222.24</td><td class="n b">7,00,070</td><td class="tag">SSR 03009A</td><td class="tag">SPEC 8.6(i)</td></tr>
+<tr><td class="ser">E4</td><td>Excavation for VIFT pile caps, 1.5 m deep</td><td class="n">1,706.18</td><td class="u">Cum</td><td class="tag">56.87 x 5.0 x 1.5 x 4 ; cap width 5.0 ASSUMED D-3</td><td class="n">222.24</td><td class="n b">3,79,189</td><td class="tag">SSR 03009A</td><td class="tag">ASSUMED</td></tr>
+<tr><td class="ser">E7</td><td>Vibro stone columns under VIFT embankments, 2.0 m grid, 10 m deep, treated area</td><td class="n">2,684.39</td><td class="u">Sqm</td><td class="tag">(16.8-5.0) x 56.87 x 4 ; liquefaction to 9-10.5 m per soil report</td><td class="n">1,500.00</td><td class="n b">40,26,585</td><td class="tag">market</td><td class="tag">ASSUMED D-5</td></tr>
+<tr><td class="ser">E5</td><td>Surface excavation 15 cm avg over building plots</td><td class="n">8,685.98</td><td class="u">Sqm</td><td class="tag">plot + 3 m margin ; (41x36)x2 + (62.87x22.8)x4</td><td class="n">70.83</td><td class="n b">6,15,201</td><td class="tag">SSR 03001</td><td class="tag">SPEC B 1(e)</td></tr>
+<tr><td class="ser">E6</td><td>Anti termite treatment, plot area</td><td class="n">2,100</td><td class="u">Sqm</td><td class="tag">35 x 30 x 2</td><td class="n">162.46</td><td class="n b">3,41,170</td><td class="tag">SSR 03047</td><td class="tag">SPEC 1.5</td></tr>
+<tr><td class="ser">F1</td><td>RCC M-30 raft under shelter, 1200 thick</td><td class="n">2,520</td><td class="u">Cum</td><td class="tag">35.0 x 30.0 x 1.2 ; 1050 x 1.2 x 2</td><td class="n">10,299.74</td><td class="n b">2,59,55,355</td><td class="tag">SSR 04053</td><td class="tag">ASSUMED D-5 (DBR min 450)</td></tr>
+<tr><td class="ser">F2</td><td>PCC 1:4:8 75 thick under raft and caps</td><td class="n">242.81</td><td class="u">Cum</td><td class="tag">plan areas x 0.075</td><td class="n">7,313.58</td><td class="n b">17,75,811</td><td class="tag">SSR 04025 D2</td><td class="tag">DBR 5.1(b)</td></tr>
+<tr><td class="ser">F3</td><td>RCC M-30 VIFT stem, 1000 to 500 taper</td><td class="n">2,510.64</td><td class="u">Cum</td><td class="tag">mean 0.75 x 14.715 x 56.87 ; 627.7 x 4</td><td class="n">10,991.41</td><td class="n b">2,75,95,466</td><td class="tag">SSR 04054</td><td class="tag">ASSUMED D-3</td></tr>
+<tr><td class="ser">F4</td><td>RCC M-30 VIFT counterforts 400 thk @4.0 c/c</td><td class="n">1,236.06</td><td class="u">Cum</td><td class="tag">15 nos, triangle 7.0 x 14.715 ; 0.4 x 51.5 x 15 = 309.0 x 4</td><td class="n">10,991.41</td><td class="n b">1,35,86,039</td><td class="tag">SSR 04054</td><td class="tag">ASSUMED D-3</td></tr>
+<tr><td class="ser">F5</td><td>RCC M-30 VIFT pile cap 5.0 x 1.2</td><td class="n">1,364.94</td><td class="u">Cum</td><td class="tag">5.0 x 1.2 x 56.87 ; 341.2 x 4</td><td class="n">10,299.74</td><td class="n b">1,40,58,533</td><td class="tag">SSR 04053</td><td class="tag">ASSUMED D-3</td></tr>
+<tr><td class="ser">F6</td><td>RCC M-30 VIFT end wall 1500 thk at pen end</td><td class="n">931.35</td><td class="u">Cum</td><td class="tag">1.5 x (14.715+3.764)/2 x 16.8 ; 232.8 x 4</td><td class="n">10,991.41</td><td class="n b">1,02,36,847</td><td class="tag">SSR 04054</td><td class="tag">PRINTED 1500 / ASSUMED profile</td></tr>
+<tr><td class="ser">F7</td><td>RCC M-30 VIFT toe wall 400 on 600x2000 base</td><td class="n">615.52</td><td class="u">Cum</td><td class="tag">0.4x3.764x56.87 + 2.0x0.6x56.87 ; 153.9 x 4</td><td class="n">10,991.41</td><td class="n b">67,65,431</td><td class="tag">SSR 04054</td><td class="tag">ASSUMED D-3</td></tr>
+<tr><td class="ser">F8</td><td>Bored cast in situ piles 800 dia x 20 m, shelters</td><td class="n">440</td><td class="u">Nos</td><td class="tag">load 9577 t per shelter / 43.6 t ; 220 x 2</td><td class="n"></td><td class="n b">0</td><td class="tag">in F10</td><td class="tag">DERIVED from soil report capacity</td></tr>
+<tr><td class="ser">F9</td><td>Bored cast in situ piles 800 dia x 20 m, VIFT wings</td><td class="n">696</td><td class="u">Nos</td><td class="tag">load 7543 t per wing / 43.6 t ; 174 x 4</td><td class="n"></td><td class="n b">0</td><td class="tag">in F10</td><td class="tag">DERIVED from soil report capacity</td></tr>
+<tr><td class="ser">F10</td><td>Pile boring and concreting, 800 dia</td><td class="n">22,720</td><td class="u">RM</td><td class="tag">1136 piles x 20 m</td><td class="n">6,500.00</td><td class="n b">14,76,80,000</td><td class="tag">market, boring + concrete, steel in F11</td><td class="tag">DERIVED</td></tr>
+<tr><td class="ser">F11</td><td>Reinforcement to piles @ 90 kg/cum</td><td class="n">10,27,828.59</td><td class="u">kg</td><td class="tag">1136 x 20 x 0.503 cum x 90</td><td class="n">110.18</td><td class="n b">11,32,41,258</td><td class="tag">SSR 10034</td><td class="tag">ASSUMED</td></tr>
+<tr><td class="ser">F12</td><td>Reinforcement to raft and VIFT @ 120 kg/cum</td><td class="n">11,01,421.86</td><td class="u">kg</td><td class="tag">(2520 + 6659) cum x 120</td><td class="n">110.18</td><td class="n b">12,13,49,414</td><td class="tag">SSR 10034</td><td class="tag">ASSUMED</td></tr>
+<tr><td class="ser">F13</td><td>Formwork to VIFT faces and counterforts</td><td class="n">15,829.8</td><td class="u">Sqm</td><td class="tag">both faces stem, both faces cf, end wall, toe</td><td class="n">658.32</td><td class="n b">1,04,21,027</td><td class="tag">SSR 07005</td><td class="tag">DERIVED</td></tr>
+<tr><td class="ser">F14</td><td>Formwork to raft and cap edges</td><td class="n">905.98</td><td class="u">Sqm</td><td class="tag">perimeters x depth</td><td class="n">422.45</td><td class="n b">3,82,735</td><td class="tag">SSR 07004</td><td class="tag">DERIVED</td></tr>
+<tr><td class="ser">S1</td><td>RCC M-30 arch shell, t = 350 mm</td><td class="n">851</td><td class="u">Cum</td><td class="tag">R 22.346, half angle 0.8997 rad, t 0.35, L 30.0 ; 2x(R+t/2)xang x L x t = 425.5 x 2</td><td class="n">10,127.23</td><td class="n b">86,18,269</td><td class="tag">SSR 04055</td><td class="tag">DERIVED (t ASSUMED D-1)</td></tr>
+<tr><td class="ser">S2</td><td>Reinforcement to shell @ 180 kg/cum</td><td class="n">1,53,180.29</td><td class="u">kg</td><td class="tag">425.5 x 2 x 180</td><td class="n">110.18</td><td class="n b">1,68,76,675</td><td class="tag">SSR 10034</td><td class="tag">ASSUMED D-1</td></tr>
+<tr><td class="ser">S3</td><td>Curved soffit formwork with staging to 8.45 m, vetted</td><td class="n">2,412.54</td><td class="u">Sqm</td><td class="tag">arc 40.21 x 30.0 ; 1206.3 x 2</td><td class="n">2,200.00</td><td class="n b">53,07,588</td><td class="tag">market, vetted curved staging</td><td class="tag">DERIVED</td></tr>
+<tr><td class="ser">S4</td><td>Formwork to arch edges and springing</td><td class="n">98.29</td><td class="u">Sqm</td><td class="tag">edges x t</td><td class="n">422.45</td><td class="n b">41,523</td><td class="tag">SSR 07004</td><td class="tag">DERIVED</td></tr>
+<tr><td class="ser">S5</td><td>RCC M-30 end walls above and beside door openings, 500 thk</td><td class="n">12.15</td><td class="u">Cum</td><td class="tag">segment 206.1 sqm less opening 25x8 ; 6.1 x 0.5 x 2 ends x 2</td><td class="n">10,991.41</td><td class="n b">1,33,546</td><td class="tag">SSR 04054</td><td class="tag">ASSUMED 500</td></tr>
+<tr><td class="ser">S6</td><td>Reinforcement to end walls @ 150 kg/cum</td><td class="n">1,822.78</td><td class="u">kg</td><td class="tag"></td><td class="n">110.18</td><td class="n b">2,00,825</td><td class="tag">SSR 10034</td><td class="tag">ASSUMED</td></tr>
+<tr><td class="ser">S7</td><td>Formwork to end walls both faces</td><td class="n">48.61</td><td class="u">Sqm</td><td class="tag"></td><td class="n">658.32</td><td class="n b">32,001</td><td class="tag">SSR 07005</td><td class="tag">DERIVED</td></tr>
+<tr><td class="ser">S8</td><td>RCC M-30 door mount portals, 2 legs 3x1x12 + head 3x2x28</td><td class="n">960</td><td class="u">Cum</td><td class="tag">per end 240.0 cum ; x 2 ends x 2</td><td class="n">10,991.41</td><td class="n b">1,05,51,751</td><td class="tag">SSR 04054</td><td class="tag">ASSUMED D-4</td></tr>
+<tr><td class="ser">S9</td><td>Reinforcement to door mounts @ 160 kg/cum</td><td class="n">1,53,600</td><td class="u">kg</td><td class="tag"></td><td class="n">110.18</td><td class="n b">1,69,22,916</td><td class="tag">SSR 10034</td><td class="tag">ASSUMED</td></tr>
+<tr><td class="ser">A1</td><td>RCC M-30 annexe floor slab 150 over raft (crew + store)</td><td class="n">90</td><td class="u">Cum</td><td class="tag">2 x 5.0 x 30.0 x 0.15</td><td class="n">10,127.23</td><td class="n b">9,11,450</td><td class="tag">SSR 04055</td><td class="tag">DBR min 150</td></tr>
+<tr><td class="ser">A2</td><td>RCC M-30 annexe ceiling slab 150 at 6.0 m (both strips)</td><td class="n">90</td><td class="u">Cum</td><td class="tag">2 x 5.0 x 30.0 x 0.15</td><td class="n">10,127.23</td><td class="n b">9,11,450</td><td class="tag">SSR 04055</td><td class="tag">ASSUMED (section shows slab at 6000)</td></tr>
+<tr><td class="ser">A3</td><td>RCC M-30 annexe front walls 300 thk x 6.0 high (both strips)</td><td class="n">216</td><td class="u">Cum</td><td class="tag">2 x 30 x 6.0 x 0.3</td><td class="n">10,991.41</td><td class="n b">23,74,144</td><td class="tag">SSR 04054</td><td class="tag">PRINTED 300 on section</td></tr>
+<tr><td class="ser">A4</td><td>Brickwork 230 partitions in crew strip</td><td class="n">55.2</td><td class="u">Cum</td><td class="tag">4 cross walls 5.0 x 6.0 x 0.23</td><td class="n">6,800.00</td><td class="n b">3,75,360</td><td class="tag">analysed brickwork</td><td class="tag">SCALED count</td></tr>
+<tr><td class="ser">A5</td><td>Half brick 115 partitions, toilets and kitchen</td><td class="n">10.48</td><td class="u">Cum</td><td class="tag">from 1:25 details</td><td class="n">7,400.00</td><td class="n b">77,552</td><td class="tag">analysed half brick</td><td class="tag">SCALED</td></tr>
+<tr><td class="ser">A6</td><td>Reinforcement to annexe RCC @ 110 kg/cum</td><td class="n">43,560</td><td class="u">kg</td><td class="tag"></td><td class="n">110.18</td><td class="n b">47,99,233</td><td class="tag">SSR 10034</td><td class="tag">ASSUMED</td></tr>
+<tr><td class="ser">A7</td><td>Formwork annexe slabs soffit and walls</td><td class="n">2,040</td><td class="u">Sqm</td><td class="tag"></td><td class="n">749.32</td><td class="n b">15,28,623</td><td class="tag">SSR 07006</td><td class="tag">DERIVED</td></tr>
+<tr><td class="ser">P1</td><td>Approved fill under bay to k=5, 0.75 avg</td><td class="n">1,125</td><td class="u">Cum</td><td class="tag">25.0 x 30.0 x 0.75 ; 750 x 0.75 x 2</td><td class="n">620.00</td><td class="n b">6,97,500</td><td class="tag">market</td><td class="tag">SPEC 8.6</td></tr>
+<tr><td class="ser">P2</td><td>GSB grade V 300 thk</td><td class="n">450</td><td class="u">Cum</td><td class="tag">25.0 x 30.0 x 0.30 ; 750 x 0.30 x 2</td><td class="n">2,400.00</td><td class="n b">10,80,000</td><td class="tag">market</td><td class="tag">SPEC 8.6</td></tr>
+<tr><td class="ser">P3</td><td>WMM 150 thk</td><td class="n">225</td><td class="u">Cum</td><td class="tag">25.0 x 30.0 x 0.15 ; 750 x 0.15 x 2</td><td class="n">3,400.00</td><td class="n b">7,65,000</td><td class="tag">market</td><td class="tag">SPEC 8.6</td></tr>
+<tr><td class="ser">P4</td><td>DLC 150 thk</td><td class="n">225</td><td class="u">Cum</td><td class="tag">25.0 x 30.0 x 0.15 ; 750 x 0.15 x 2</td><td class="n">4,540.00</td><td class="n b">10,21,500</td><td class="tag">market</td><td class="tag">SPEC 8.6</td></tr>
+<tr><td class="ser">P5</td><td>Sand cushion 10</td><td class="n">15</td><td class="u">Cum</td><td class="tag">25.0 x 30.0 x 0.01 ; 750 x 0.01 x 2</td><td class="n">1,400.00</td><td class="n b">21,000</td><td class="tag">market</td><td class="tag">SPEC 8.6</td></tr>
+<tr><td class="ser">P7</td><td>PQC 240 thk M-40 flexural 4.5 with fibre</td><td class="n">360</td><td class="u">Cum</td><td class="tag">25.0 x 30.0 x 0.24 ; 750 x 0.24 x 2</td><td class="n">8,580.00</td><td class="n b">30,88,800</td><td class="tag">market, 400 kg cement + fibre</td><td class="tag">SPEC 8.6</td></tr>
+<tr><td class="ser">P6</td><td>HDPE 400 micron under PQC</td><td class="n">1,500</td><td class="u">Sqm</td><td class="tag">25 x 30</td><td class="n">95.00</td><td class="n b">1,42,500</td><td class="tag">market</td><td class="tag">SPEC 8.6</td></tr>
+<tr><td class="ser">P8</td><td>Expansion joints 25 mm full depth</td><td class="n">270</td><td class="u">RM</td><td class="tag">3 across + 2 along</td><td class="n">460.00</td><td class="n b">1,24,200</td><td class="tag">per RM</td><td class="tag">ASSUMED layout</td></tr>
+<tr><td class="ser">P9</td><td>Contraction joints @ 4.5 m both ways</td><td class="n">600</td><td class="u">RM</td><td class="tag"></td><td class="n">225.00</td><td class="n b">1,35,000</td><td class="tag">per RM</td><td class="tag">SPEC/ASSUMED spacing</td></tr>
+<tr><td class="ser">P10</td><td>Pavement marking</td><td class="n">120</td><td class="u">Sqm</td><td class="tag"></td><td class="n">180.00</td><td class="n b">21,600</td><td class="tag">market</td><td class="tag">ASSUMED</td></tr>
+<tr><td class="ser">K1</td><td>Kota stone 20 on 20 screed, 40 PCC B-2, 75 PCC 1:3:6, store</td><td class="n">300</td><td class="u">Sqm</td><td class="tag">per shelter 150.0 ; x 2</td><td class="n">2,350.00</td><td class="n b">7,05,000</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K2</td><td>Vitrified 600x600 on 15 screed, 30 PCC B-0, 75 PCC C-2, crew rooms</td><td class="n">215.75</td><td class="u">Sqm</td><td class="tag">per shelter 107.9 ; x 2</td><td class="n">1,650.00</td><td class="n b">3,55,988</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K3</td><td>Non skid ceramic on 20 screed, 40 PCC B-1, 75 PCC, wet areas</td><td class="n">84.25</td><td class="u">Sqm</td><td class="tag">per shelter 42.1 ; x 2</td><td class="n">1,450.00</td><td class="n b">1,22,162</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K4</td><td>Plaster 5 mm CM 1:3 to arch soffit</td><td class="n">2,412.54</td><td class="u">Sqm</td><td class="tag">per shelter 1206.3 ; x 2</td><td class="n">340.00</td><td class="n b">8,20,264</td><td class="tag">analysed</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K5</td><td>Plaster 5 mm CM 1:3 to annexe slab soffits</td><td class="n">600</td><td class="u">Sqm</td><td class="tag">per shelter 300.0 ; x 2</td><td class="n">340.00</td><td class="n b">2,04,000</td><td class="tag">analysed</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K6</td><td>False ceiling 600x600 board, annexe rooms</td><td class="n">600</td><td class="u">Sqm</td><td class="tag">per shelter 300.0 ; x 2</td><td class="n">1,750.00</td><td class="n b">10,50,000</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K7</td><td>Waterproofing system Nitoproof 600 PF with 50 screed, extrados + annexe roofs</td><td class="n">2,450.33</td><td class="u">Sqm</td><td class="tag">per shelter 1225.2 ; x 2</td><td class="n">1,650.00</td><td class="n b">40,43,044</td><td class="tag">market, full Nitoproof system + screed</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K8</td><td>Kota skirting 100 high, store</td><td class="n">140</td><td class="u">RM</td><td class="tag">per shelter 70.0 ; x 2</td><td class="n">520.00</td><td class="n b">72,800</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K9</td><td>Vitrified skirting 100 high, crew rooms</td><td class="n">146.3</td><td class="u">RM</td><td class="tag">per shelter 73.2 ; x 2</td><td class="n">340.00</td><td class="n b">49,742</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K10</td><td>Glazed ceramic dado 450x300 to 2100</td><td class="n">238.77</td><td class="u">Sqm</td><td class="tag">per shelter 119.4 ; x 2</td><td class="n">1,250.00</td><td class="n b">2,98,462</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K11</td><td>Internal plaster 10 mm CM 1:6</td><td class="n">1,320</td><td class="u">Sqm</td><td class="tag">per shelter 660.0 ; x 2</td><td class="n">395.00</td><td class="n b">5,21,400</td><td class="tag">analysed</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K12</td><td>External plaster 15 mm two coat CM 1:4 with WPC, gables and exposed walls</td><td class="n">744.3</td><td class="u">Sqm</td><td class="tag">per shelter 372.2 ; x 2</td><td class="n">620.00</td><td class="n b">4,61,466</td><td class="tag">analysed 15 mm two coat</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K13</td><td>Paint T-2 OBD, ceilings</td><td class="n">3,012.54</td><td class="u">Sqm</td><td class="tag">per shelter 1506.3 ; x 2</td><td class="n">145.00</td><td class="n b">4,36,818</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K14</td><td>Paint T-2 OBD, internal walls</td><td class="n">1,320</td><td class="u">Sqm</td><td class="tag">per shelter 660.0 ; x 2</td><td class="n">145.00</td><td class="n b">1,91,400</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K15</td><td>Paint T-7 acrylic camouflage, external, 7 yr guarantee</td><td class="n">744.3</td><td class="u">Sqm</td><td class="tag">per shelter 372.2 ; x 2</td><td class="n">265.00</td><td class="n b">1,97,240</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K16</td><td>Paint T-7 camouflage to VIFT inner faces</td><td class="n">3,347.52</td><td class="u">Sqm</td><td class="tag">per shelter 1673.8 ; x 2</td><td class="n">265.00</td><td class="n b">8,87,093</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K17</td><td>Granite urinal partitions</td><td class="n">8</td><td class="u">Nos</td><td class="tag">per shelter 4.0 ; x 2</td><td class="n">18,000.00</td><td class="n b">1,44,000</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">K18</td><td>Kitchen platform granite with SS sink</td><td class="n">6</td><td class="u">RM</td><td class="tag">per shelter 3.0 ; x 2</td><td class="n">9,500.00</td><td class="n b">57,000</td><td class="tag">market</td><td class="tag">DERIVED / SCALED rooms</td></tr>
+<tr><td class="ser">D1</td><td>WPC doors WPD-8/9/10 (TD300)</td><td class="n">14</td><td class="u">Nos</td><td class="tag">per shelter 7 ; x 2</td><td class="n">18,500.00</td><td class="n b">2,59,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">D2</td><td>Aluminium doors ALD-15 (TD241)</td><td class="n">4</td><td class="u">Nos</td><td class="tag">per shelter 2 ; x 2</td><td class="n">32,000.00</td><td class="n b">1,28,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">D3</td><td>UPVC windows UPW-18 (TD298)</td><td class="n">12</td><td class="u">Nos</td><td class="tag">per shelter 6 ; x 2</td><td class="n">21,000.00</td><td class="n b">2,52,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">D4</td><td>Flush doors FD-18 1800x2100 pressed steel frame (TD299)</td><td class="n">8</td><td class="u">Nos</td><td class="tag">per shelter 4 ; x 2</td><td class="n">16,500.00</td><td class="n b">1,32,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">D5</td><td>Rolling shutters 3000 wide</td><td class="n">4</td><td class="u">Nos</td><td class="tag">per shelter 2 ; x 2</td><td class="n">1,85,000.00</td><td class="n b">7,40,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">D6</td><td>Blast door 28.0 x 8.14 m, 4 leaf, motorised, IIT vetted (PS 17)</td><td class="n">4</td><td class="u">Nos</td><td class="tag">per shelter 2 ; x 2</td><td class="n">1,24,50,000.00</td><td class="n b">4,98,00,000</td><td class="tag">analysed: 62 t @ 1.45 L/t + drives + controls + design/vetting</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">W1</td><td>EWC with dual flush cistern, seat, health faucet, paper holder</td><td class="n">6</td><td class="u">Nos</td><td class="tag">per shelter 3 ; x 2</td><td class="n">24,000.00</td><td class="n b">1,44,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">W2</td><td>WHB with mirror, 2 wall + 2 counter type on granite</td><td class="n">8</td><td class="u">Nos</td><td class="tag">per shelter 4 ; x 2</td><td class="n">21,000.00</td><td class="n b">1,68,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">W3</td><td>Urinals with CP spreader</td><td class="n">6</td><td class="u">Nos</td><td class="tag">per shelter 3 ; x 2</td><td class="n">9,500.00</td><td class="n b">57,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">W4</td><td>SS sink with drainboard</td><td class="n">2</td><td class="u">Nos</td><td class="tag">per shelter 1 ; x 2</td><td class="n">12,000.00</td><td class="n b">24,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">W5</td><td>Nahani and floor traps</td><td class="n">16</td><td class="u">Nos</td><td class="tag">per shelter 8 ; x 2</td><td class="n">1,800.00</td><td class="n b">28,800</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">W6</td><td>Gully traps</td><td class="n">8</td><td class="u">Nos</td><td class="tag">per shelter 4 ; x 2</td><td class="n">3,200.00</td><td class="n b">25,600</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">W7</td><td>CI soil, waste and vent pipe 100 dia</td><td class="n">120</td><td class="u">RM</td><td class="tag">per shelter 60 ; x 2</td><td class="n">1,650.00</td><td class="n b">1,98,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">W8</td><td>First manhole 90x90x90</td><td class="n">2</td><td class="u">Nos</td><td class="tag">per shelter 1 ; x 2</td><td class="n">38,000.00</td><td class="n b">76,000</td><td class="tag">analysed</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">W9</td><td>HDPE rain water pipe 160</td><td class="n">80</td><td class="u">RM</td><td class="tag">per shelter 40 ; x 2</td><td class="n">850.00</td><td class="n b">68,000</td><td class="tag">market</td><td class="tag">PRINTED count / SPEC</td></tr>
+<tr><td class="ser">X1</td><td>Parking shed, RCC, allowance (no drawing)</td><td class="n">2</td><td class="u">Nos</td><td class="tag"></td><td class="n">27,00,000.00</td><td class="n b">54,00,000</td><td class="tag">ALLOWANCE</td><td class="tag">ASSUMED D-7</td></tr>
+<tr><td class="ser">X2</td><td>Water staging 25 kL on 12 m staging, allowance (no drawing)</td><td class="n">2</td><td class="u">Nos</td><td class="tag"></td><td class="n">25,00,000.00</td><td class="n b">50,00,000</td><td class="tag">ALLOWANCE</td><td class="tag">ASSUMED D-7</td></tr>
+<tr class="tot"><td></td><td>Part I, central</td><td></td><td></td><td></td><td></td><td class="n">67,66,29,776</td><td></td><td></td></tr></tbody></table></div></section>
+<section class="sheet" id="a2"><div class="phead alt"><div class="pnum">B</div><div class="pname">Part XIV, miscellaneous items</div><div class="pkind">Not pre-priced, 30 lines, central</div></div><div class="tw"><table class="rate"><thead><tr><th>Item</th><th class="n">Qty</th><th class="n">Rate</th><th class="n">Amount</th></tr></thead><tbody>
+<tr><td>Approved earth soil, supply only, k=5</td><td class="n">18,800</td><td class="n">446.40</td><td class="n b">83,92,320</td></tr>
+<tr><td>FP well glass flood light 200 W</td><td class="n">144</td><td class="n">16,500.00</td><td class="n b">23,76,000</td></tr>
+<tr><td>FP DB TPN</td><td class="n">4</td><td class="n">1,65,000.00</td><td class="n b">6,60,000</td></tr>
+<tr><td>FP DB SPN</td><td class="n">4</td><td class="n">98,000.00</td><td class="n b">3,92,000</td></tr>
+<tr><td>Chemical earthing</td><td class="n">4</td><td class="n">1,28,305.07</td><td class="n b">5,13,220</td></tr>
+<tr><td>FP wall fan</td><td class="n">12</td><td class="n">26,000.00</td><td class="n b">3,12,000</td></tr>
+<tr><td>FP plug socket 32A</td><td class="n">4</td><td class="n">21,000.00</td><td class="n b">84,000</td></tr>
+<tr><td>FP exhaust fan</td><td class="n">4</td><td class="n">19,000.00</td><td class="n b">76,000</td></tr>
+<tr><td>FP ceiling fan</td><td class="n">26</td><td class="n">22,000.00</td><td class="n b">5,72,000</td></tr>
+<tr><td>Road studs</td><td class="n">50</td><td class="n">1,533.92</td><td class="n b">76,696</td></tr>
+<tr><td>Septic tank</td><td class="n">2</td><td class="n">4,85,000.00</td><td class="n b">9,70,000</td></tr>
+<tr><td>Soak wells</td><td class="n">2</td><td class="n">1,68,000.00</td><td class="n b">3,36,000</td></tr>
+<tr><td>MS junction box</td><td class="n">12</td><td class="n">4,200.00</td><td class="n b">50,400</td></tr>
+<tr><td>Pipe cutting</td><td class="n">2</td><td class="n">2,800.00</td><td class="n b">5,600</td></tr>
+<tr><td>Valve pits</td><td class="n">4</td><td class="n">26,500.00</td><td class="n b">1,06,000</td></tr>
+<tr><td>11 kV CSS</td><td class="n">2</td><td class="n">24,50,000.00</td><td class="n b">49,00,000</td></tr>
+<tr><td>Trenchless boring</td><td class="n">200</td><td class="n">4,800.00</td><td class="n b">9,60,000</td></tr>
+<tr><td>JB IP66</td><td class="n">14</td><td class="n">8,500.00</td><td class="n b">1,19,000</td></tr>
+<tr><td>Aviation light</td><td class="n">4</td><td class="n">34,000.00</td><td class="n b">1,36,000</td></tr>
+<tr><td>Feeder pillar</td><td class="n">2</td><td class="n">4,20,000.00</td><td class="n b">8,40,000</td></tr>
+<tr><td>Earthing GS</td><td class="n">36</td><td class="n">19,740.84</td><td class="n b">7,10,670</td></tr>
+<tr><td>Earthing GI</td><td class="n">10</td><td class="n">18,540.38</td><td class="n b">1,85,404</td></tr>
+<tr><td>DG 100 kVA</td><td class="n">2</td><td class="n">11,50,000.00</td><td class="n b">23,00,000</td></tr>
+<tr><td>Earthing Cu</td><td class="n">12</td><td class="n">28,677.57</td><td class="n b">3,44,131</td></tr>
+<tr><td>Explosion proof AC 1.5 TR</td><td class="n">18</td><td class="n">2,85,000.00</td><td class="n b">51,30,000</td></tr>
+<tr><td>Extinguishers</td><td class="n">8</td><td class="n">6,500.00</td><td class="n b">52,000</td></tr>
+<tr><td>JB IP65</td><td class="n">12</td><td class="n">3,200.00</td><td class="n b">38,400</td></tr>
+<tr><td>Nature switch</td><td class="n">1</td><td class="n">12,000.00</td><td class="n b">12,000</td></tr>
+<tr><td>Post top LED</td><td class="n">2</td><td class="n">14,500.00</td><td class="n b">29,000</td></tr>
+<tr><td>SPN socket</td><td class="n">21</td><td class="n">2,400.00</td><td class="n b">50,400</td></tr>
+<tr class="tot"><td>Part XIV</td><td></td><td></td><td class="n">3,07,29,241</td></tr></tbody></table></div></section>
+<section class="sheet" id="a3"><div class="phead alt"><div class="pnum">C</div><div class="pname">Contract obligations</div><div class="pkind">Twelve heads, no schedule pays for them</div></div><div class="tw"><table class="rate"><thead><tr><th>Obligation</th><th class="n">Amount</th></tr></thead><tbody>
+<tr><td>Mandatory plant regime: mobilisation, hire or depreciation over 22 months, standby, OEM operators, calibration, service MoU, daily register (SC 30(e), 44 items)</td><td class="n b">1,50,00,000</td></tr>
+<tr><td>Site power: MES supply capped at 5 kW, so DG generation for batching plant, WMM plant, dewatering, lighting and workshops for the whole programme (SC 13)</td><td class="n b">95,00,000</td></tr>
+<tr><td>Barricading 4 m sheet cladding for flying operations, perimeter assumed 1,200 m pending site plans (SC 2(o))</td><td class="n b">34,00,000</td></tr>
+<tr><td>Multi stage well point dewatering with DG and standby through the foundation period (SC 2(q), PS B 1(d))</td><td class="n b">45,00,000</td></tr>
+<tr><td>Technical staff, 4 degree + 4 diploma engineers, 22 months (SC 31)</td><td class="n b">1,15,00,000</td></tr>
+<tr><td>Structural design (STAAD/RCDC), IIT/NIT proof check, blast door design vetting, formwork vetting, confirmatory soil investigation vetted by IIT (DBR 3.1, 6; PS 17)</td><td class="n b">60,00,000</td></tr>
+<tr><td>Job mix designs at IIT/CME/CRRI, concrete mix designs, trial bays 15 m x paver width for GSB, WMM, DLC and PQC repeated to acceptance (SC 2(s), 6)</td><td class="n b">28,00,000</td></tr>
+<tr><td>A level site laboratory, B and C level tests at CTL Shillong or Kolkata, cement and steel independent testing (SC 27, PS 2.1, 4.6)</td><td class="n b">40,00,000</td></tr>
+<tr><td>Topographical survey on 3 m grid, level sheets, CWE approval (SC 2(r))</td><td class="n b">12,00,000</td></tr>
+<tr><td>Guarantee retentions: waterproofing 8 yr, anti termite 10 yr, acrylic paint 7 yr; carry cost</td><td class="n b">18,00,000</td></tr>
+<tr><td>Water: boring, storage, testing; restricted area passes, police verification fees, watch and ward; insurance, EPF, ESI; CPM, QC plan, weekly reports, sample quarter; completion drawings on polyester film; road register (SC 12, 6, 18, 28, 29, 36)</td><td class="n b">85,00,000</td></tr>
+<tr><td>Performance security 5 pc to end of DLP + 2 months, EMD, yardstick cash flow lag on Part I, working capital over 22 months</td><td class="n b">2,00,00,000</td></tr>
+<tr class="tot"><td>Obligations</td><td class="n">8,82,00,000</td></tr></tbody></table></div></section>
+<section class="sheet" id="a4"><div class="phead alt"><div class="pnum">D</div><div class="pname">Information request and blanks</div><div class="pkind">What the documents could not close</div></div>
+<p>Everything the estimate could not close from the documents held, written as the request we</p>
+<p>would send. Each line says what it unblocks.</p>
+<h3>Documents to obtain or inspect</h3>
+<div class="tw"><table class="cmp"><thead><tr><th>Ref</th><th>Item</th><th>Where</th><th>Unblocks</th></tr></thead><tbody><tr><td>D-1</td><td>Site plans AF/PUR/LP/26 sheets 1/2 and 2/2, B&amp;R and E/M site plans of HAS-I and HAS-II</td><td>Not issued. Inspect at HQ CE (AF) Shillong Zone or AGE(I) Purnea, per list of drawings note (i)</td><td>Barricade perimeter, external service runs, whether any structure exists beyond the six in the BOQ, siting of parking sheds and water stagings</td></tr><tr><td>D-2</td><td>Any drawing of the parking shed and the water staging, BOQ 1.02 and 1.03</td><td>Same office; none in the pack</td><td>Two allowances of Rs 27 L and Rs 25 L each become measured items</td></tr><tr><td>D-3</td><td>The level sheet referred to at SC 2(u)</td><td>Same office</td><td>Earth quantity E1, E2, P1 and the fill risk at SC 2(u)</td></tr><tr><td>D-4</td><td>Clean SSR 2020 Part II with amendments 1 to 122</td><td>Contractor&#x27;s office</td><td>Confirms M-30 rates 04053 and 04055 (A-01) and any amended rate among the 96 book rates</td></tr><tr><td>D-5</td><td>TD sheets named in the list of drawings but not in the pack: AF/TD/STRU/249 (water tank), 265 (septic tank), 236 (soak well)</td><td>In TD1 as received, to be confirmed against the listed revision dates</td><td>Part XIV lines 25, 26 and the water staging</td></tr><tr><td>D-7</td><td>GCC IAFW-2249 with amendments 1 to 49 and errata 1 to 20, specifically Condition 63 price variation</td><td>Contractor&#x27;s office or any MES office</td><td>R-16: how much of the programme cost movement is recoverable</td></tr><tr><td>D-6</td><td>HQ letter 86513/Gen/50/E2D dated 20 Mar 2024 on confirmatory soil investigation</td><td>Referred to in DBR 6(ii), not in pack</td><td>Scope and cost of O-5 confirmatory investigation</td></tr></tbody></table></div>
+<h3>Design inputs, for the checker</h3>
+<div class="tw"><table class="cmp"><thead><tr><th>Ref</th><th>Input</th><th>Carried as</th><th>Moves</th></tr></thead><tbody><tr><td>P-1</td><td>Shell thickness</td><td>350 central (250 to 500)</td><td>Rs 0.9 cr across the range</td></tr><tr><td>P-2</td><td>Shell reinforcement</td><td>180 kg/cum (120 to 250)</td><td>Rs 0.5 cr</td></tr><tr><td>P-3</td><td>Pile working load</td><td>43.6 t per soil report (90 t if confirmatory investigation allows)</td><td>the single largest swing in Part I</td></tr><tr><td>P-4</td><td>VIFT wall form</td><td>RCC counterfort on piled cap, embankment on stone columns</td><td>Rs 5 to 8 cr if the wall is done as reinforced earth instead</td></tr><tr><td>P-5</td><td>Blast door</td><td>62 t steel, motorised, at Rs 1.2 cr each</td><td>Rs 2 cr across the plausible range for four doors</td></tr></tbody></table></div>
+<h3>Market prices to obtain</h3>
+<p>Pavement: cement, 20 and 40 mm aggregate ex Pakur delivered Purnea, river sand, bitumen, and</p>
+<p>plant hire for paver, WMM plant, RMC plant, rollers.</p>
+<p>Specialist, in order of value: bored piling 800 dia per metre; blast doors to PS 17; 18,800 cum</p>
+<p>approved earth to k = 5 supplied; explosion proof 1.5 TR ACs x 18; 11 kV compact substations</p>
+<p>x 2; 100 kVA DG sets x 2; flame proof well glass floodlights x 144; vibro stone columns.</p>
+<h3>Blank lines, with units, for the client</h3>
+<div class="tw"><table class="cmp"><thead><tr><th>Item</th><th>Unit</th><th>Quantity</th></tr></thead><tbody><tr><td>Parking shed, 2 nos, any structure</td><td>Sqm plan</td><td>blank</td></tr><tr><td>Water staging, 2 nos, capacity and staging height</td><td>kL and m</td><td>blank</td></tr><tr><td>Barricading perimeter for flying operations</td><td>RM</td><td>blank</td></tr><tr><td>Earth cover profile beyond the drawn section, from level sheet</td><td>Cum</td><td>blank</td></tr><tr><td>Any structure on the site plans not in the BOQ</td><td>each</td><td>blank</td></tr></tbody></table></div>
+</section></div><div class="pfoot">Bid estimate prepared from tender documents, not for construction. &nbsp;&middot;&nbsp; Ninana Technologies &nbsp;&middot;&nbsp; CE(AF)SZ/PUR/ of 2026-2027 &nbsp;&middot;&nbsp; Rev 2</div></body></html>
