@@ -170,6 +170,7 @@ td.ref{font-size:11px;color:var(--muted)}
  display:flex;gap:18px;align-items:baseline;padding:10px 0;flex-wrap:wrap}
 .bar .t{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .bar .v{font-size:20px;font-weight:700;font-family:Georgia,serif;font-variant-numeric:tabular-nums;color:var(--accent)}
+.kv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}.kv .k{background:var(--surface);border:1px solid var(--rule);padding:12px 14px;border-radius:2px}.kv .k .l{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.kv .k .v{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;font-family:Georgia,serif}.kv .k.md{border-left:3px solid var(--accent)}.kv .k.md .v{color:var(--accent)}@media(max-width:720px){.kv{grid-template-columns:1fr}}
 .bar button{font:inherit;font-size:12px;padding:4px 10px;border:1px solid var(--rule-strong);background:var(--surface);color:var(--ink);border-radius:2px;cursor:pointer}
 p,li{max-width:80ch}
 @media print{.bar{position:static}input.rt{border:0;background:none;padding:0}}
@@ -185,6 +186,26 @@ p,li{max-width:80ch}
 <tr><th>Date of issue</th><td>01 September 2026</td></tr></table>
 <div class="note"><p><strong>How to use this sheet.</strong> Every shaded rate box can be edited. Type your rate and every amount, subtotal and the bid total at the top recompute at once. The rates shown are our working figures; replace any of them with your own quotation. Your entries stay in this browser until you press Reset. Print gives a clean copy with your rates in place.</p></div></header>
 <div class="bar"><div><div class="t">Works cost</div><div class="v" id="t-works">0</div></div><div><div class="t">Cost of execution</div><div class="v" id="t-cost">0</div></div><div><div class="t">Bid</div><div class="v" id="t-bid">0</div></div><div style="flex:1"></div><button onclick="rst()">Reset to issued rates</button></div>
+<section class="sheet" id="range"><div class="phead"><div class="pnum">Range</div><div class="pname">The three design cases</div><div class="pkind">At issued rates; the live totals above follow your entries</div></div>
+<p class="cap">Part I is design and build: until the vetted design exists, the structure can land anywhere inside the cases below. The live sheet works on the central quantities; the band shows how far the design outcome moves the number at our issued rates.</p>
+<div class="kv"><div class="k"><div class="l">Low</div><div class="v">Rs 88.35 cr</div></div><div class="k md"><div class="l">Central</div><div class="v">Rs 111.94 cr</div></div><div class="k"><div class="l">High</div><div class="v">Rs 124.35 cr</div></div></div>
+<div class="tw"><table class="cmp"><thead><tr><th>What varies</th><th>Low</th><th class="md">Central</th><th>High</th><th>Reference</th></tr></thead><tbody>
+<tr><td>Arch shell thickness</td><td>250 mm</td><td class="md">350 mm</td><td>500 mm</td><td class="ref">ARCH 2/3 marks 200 to 300; vetted design governs</td></tr>
+<tr><td>Shell reinforcement</td><td>120 kg/cum</td><td class="md">180 kg/cum</td><td>250 kg/cum</td><td class="ref">pending design</td></tr>
+<tr><td>Pile working load, 800 dia x 20 m</td><td>90 t</td><td class="md">43.6 t</td><td>43.6 t</td><td class="ref">soil report pp 90 to 97; confirmatory investigation governs</td></tr>
+<tr><td>Earth quantities</td><td>as measured</td><td class="md">as measured</td><td>measured + 15 pc</td><td class="ref">level sheet not in pack, SC 2(u)</td></tr>
+<tr><td>Cost movement from SSR 2020 base</td><td>4 pc pa</td><td class="md">5 pc pa</td><td>6 pc pa</td><td class="ref">no price variation credit taken</td></tr>
+<tr><td>Overhead, risk, profit</td><td>4, 3, 7 pc</td><td class="md">5, 4, 9 pc</td><td>6, 6, 11 pc</td><td class="ref">editable in the build up above</td></tr>
+</tbody></table></div>
+<div class="tw"><table class="cmp build"><thead><tr><th>Rs lakh</th><th class="n">Low</th><th class="n md">Central</th><th class="n">High</th></tr></thead><tbody>
+<tr class=""><td>Part I</td><td class="n">5,071.29</td><td class="n md">6,725.57</td><td class="n">7,253.03</td></tr>
+<tr class=""><td>Parts II to XIII</td><td class="n">1,462.93</td><td class="n md">1,512.34</td><td class="n">1,564.12</td></tr>
+<tr class=""><td>Part XIV</td><td class="n">300.83</td><td class="n md">301.83</td><td class="n">302.89</td></tr>
+<tr class="sub"><td>Works cost</td><td class="n">6,835.05</td><td class="n md">8,539.74</td><td class="n">9,120.03</td></tr>
+<tr class=""><td>Obligations</td><td class="n">882.00</td><td class="n md">882.00</td><td class="n">882.00</td></tr>
+<tr class="sub"><td>Cost of execution</td><td class="n">7,717.05</td><td class="n md">9,421.74</td><td class="n">10,002.03</td></tr>
+<tr class="tot"><td>Bid</td><td class="n">8,835.25</td><td class="n md">11,193.97</td><td class="n">12,434.53</td></tr>
+</tbody></table></div></section>
 <section class="sheet" id="p1"><div class="phead"><div class="pnum">Part I</div><div class="pname">Buildings and structures</div><div class="pkind">BOQ 1.01 to 1.03 &middot; design and build &middot; both shelters</div></div>
 <p class="cap">Qty basis says how each quantity was obtained. Lines marked &ldquo;sized by estimator&rdquo; have no design yet; the dimensions column shows the section adopted so you can substitute your own and re-extend.</p>
 <div class="tw"><table class="rate" data-part="p1"><thead><tr><th class="ser">Ref</th><th>Item</th><th class="n">Qty</th><th class="u">Unit</th><th class="n">Rate</th><th class="n">Amount</th><th>Dimensions and arithmetic</th><th>Reference</th><th>Qty basis</th></tr></thead><tbody>
@@ -500,6 +521,48 @@ p,li{max-width:80ch}
 </tbody></table></div>
 <p class="cap">Quantities in Parts II to XIII are the department&rsquo;s and are provisional; work done is re-measured. Part I is a firm lump sum against the contractor&rsquo;s own vetted design; quantities above are measured from the tender drawings and stated assumptions pending that design.</p>
 </section>
+<section class="sheet" id="quote"><div class="phead alt"><div class="pnum">Quote</div><div class="pname">Rates to replace with quotations first</div><div class="pkind">Largest exposure first; each row is an editable rate above</div></div>
+<p class="cap">These rates are not from the SSR book; they carry the amounts shown at our working figures. A firm quotation against any row, entered in the sheet above, tightens the estimate by that row&rsquo;s exposure.</p>
+<div class="tw"><table class="rate"><thead><tr><th>Item</th><th class="u">Unit</th><th class="n">Rate carried</th><th class="n">Qty</th><th class="n">Exposure Rs</th><th>Where</th></tr></thead><tbody>
+<tr><td>Pile boring and concreting, 800 dia</td><td class="u">RM</td><td class="n">6,500.00</td><td class="n">22,720</td><td class="n b">14,76,80,000</td><td class="ref">Part I F10</td></tr>
+<tr><td>Blast door 28.0 x 8.14 m, 4 leaf, motorised, IIT vetted (PS 17)</td><td class="u">Nos</td><td class="n">1,24,50,000.00</td><td class="n">4</td><td class="n b">4,98,00,000</td><td class="ref">Part I D6</td></tr>
+<tr><td>Earth in VIFT wings</td><td class="u">Cum</td><td class="n">620.00</td><td class="n">36,702.4</td><td class="n b">2,27,55,488</td><td class="ref">Part I E2</td></tr>
+<tr><td>Approved earth soil, supply only, k=5</td><td class="u"></td><td class="n">446.40</td><td class="n">18,800</td><td class="n b">83,92,320</td><td class="ref">Part XIV ser 15</td></tr>
+<tr><td>Parking shed, RCC, allowance (no drawing)</td><td class="u">Nos</td><td class="n">27,00,000.00</td><td class="n">2</td><td class="n b">54,00,000</td><td class="ref">Part I X1</td></tr>
+<tr><td>Curved soffit formwork with staging to 8.45 m, vetted</td><td class="u">Sqm</td><td class="n">2,200.00</td><td class="n">2,412.54</td><td class="n b">53,07,588</td><td class="ref">Part I S3</td></tr>
+<tr><td>Explosion proof AC 1.5 TR</td><td class="u"></td><td class="n">2,85,000.00</td><td class="n">18</td><td class="n b">51,30,000</td><td class="ref">Part XIV ser 39</td></tr>
+<tr><td>11 kV CSS</td><td class="u"></td><td class="n">24,50,000.00</td><td class="n">2</td><td class="n b">49,00,000</td><td class="ref">Part XIV ser 30</td></tr>
+<tr><td>Earth mound over shelter, placed and compacted</td><td class="u">Cum</td><td class="n">620.00</td><td class="n">7,880.44</td><td class="n b">48,85,873</td><td class="ref">Part I E1</td></tr>
+<tr><td>Waterproofing system Nitoproof 600 PF with 50 screed, extrados + annexe roofs</td><td class="u">Sqm</td><td class="n">1,650.00</td><td class="n">2,450.33</td><td class="n b">40,43,044</td><td class="ref">Part I K7</td></tr>
+<tr><td>Vibro stone columns under VIFT embankments, 2.0 m grid, 10 m deep, treated area</td><td class="u">Sqm</td><td class="n">1,500.00</td><td class="n">2,684.39</td><td class="n b">40,26,585</td><td class="ref">Part I E7</td></tr>
+<tr><td>PQC 240 thk M-40 flexural 4.5 with fibre</td><td class="u">Cum</td><td class="n">8,580.00</td><td class="n">360</td><td class="n b">30,88,800</td><td class="ref">Part I P7</td></tr>
+<tr><td>FP well glass flood light 200 W</td><td class="u"></td><td class="n">16,500.00</td><td class="n">144</td><td class="n b">23,76,000</td><td class="ref">Part XIV ser 16</td></tr>
+<tr><td>DG 100 kVA</td><td class="u"></td><td class="n">11,50,000.00</td><td class="n">2</td><td class="n b">23,00,000</td><td class="ref">Part XIV ser 37</td></tr>
+<tr><td>GSB grade V 300 thk</td><td class="u">Cum</td><td class="n">2,400.00</td><td class="n">450</td><td class="n b">10,80,000</td><td class="ref">Part I P2</td></tr>
+<tr><td>False ceiling 600x600 board, annexe rooms</td><td class="u">Sqm</td><td class="n">1,750.00</td><td class="n">600</td><td class="n b">10,50,000</td><td class="ref">Part I K6</td></tr>
+<tr><td>DLC 150 thk</td><td class="u">Cum</td><td class="n">4,540.00</td><td class="n">225</td><td class="n b">10,21,500</td><td class="ref">Part I P4</td></tr>
+<tr><td>Trenchless boring</td><td class="u"></td><td class="n">4,800.00</td><td class="n">200</td><td class="n b">9,60,000</td><td class="ref">Part XIV ser 31</td></tr>
+<tr><td>Paint T-7 camouflage to VIFT inner faces</td><td class="u">Sqm</td><td class="n">265.00</td><td class="n">3,347.52</td><td class="n b">8,87,093</td><td class="ref">Part I K16</td></tr>
+<tr><td>Feeder pillar</td><td class="u"></td><td class="n">4,20,000.00</td><td class="n">2</td><td class="n b">8,40,000</td><td class="ref">Part XIV ser 34</td></tr>
+<tr class="tot"><td>All non-book rates (81 lines)</td><td></td><td></td><td></td><td class="n">29,11,74,866</td><td></td></tr></tbody></table></div>
+<h3>Basic material prices behind the built up rates</h3><p class="cap">One supplier call against any of these checks every rate resting on it.</p>
+<div class="tw"><table class="cmp"><thead><tr><th>Material, delivered Purnea</th><th class="u">Unit</th><th class="n">Price carried</th></tr></thead><tbody>
+<tr><td>OPC 43 cement</td><td class="u">t</td><td class="n">8,400.00</td></tr>
+<tr><td>Coarse aggregate 20 mm, ex Pakur or Bhagalpur</td><td class="u">cum</td><td class="n">2,400.00</td></tr>
+<tr><td>Coarse aggregate 40 mm</td><td class="u">cum</td><td class="n">2,250.00</td></tr>
+<tr><td>River sand, local</td><td class="u">cum</td><td class="n">1,200.00</td></tr>
+<tr><td>TMT Fe 500D</td><td class="u">t</td><td class="n">68,000.00</td></tr>
+<tr><td>GSB, placed and rolled</td><td class="u">cum</td><td class="n">2,400.00</td></tr>
+<tr><td>WMM, plant mixed, placed</td><td class="u">cum</td><td class="n">3,400.00</td></tr>
+<tr><td>DLC, placed</td><td class="u">cum</td><td class="n">4,540.00</td></tr>
+<tr><td>PQC, paver laid and textured</td><td class="u">cum</td><td class="n">8,250.00</td></tr>
+<tr><td>Approved earth, supplied, placed, compacted to k = 5</td><td class="u">cum</td><td class="n">620.00</td></tr>
+<tr><td>Bored pile 800 dia, boring and concrete</td><td class="u">RM</td><td class="n">6,500.00</td></tr>
+<tr><td>Vibro stone columns, treated area</td><td class="u">sqm</td><td class="n">1,500.00</td></tr>
+<tr><td>Curved soffit formwork with staging, vetted</td><td class="u">sqm</td><td class="n">2,200.00</td></tr>
+<tr><td>Unskilled labour</td><td class="u">day</td><td class="n">650.00</td></tr>
+<tr><td>Skilled labour</td><td class="u">day</td><td class="n">920.00</td></tr>
+</tbody></table></div></section>
 <section class="sheet" id="need"><div class="phead alt"><div class="pnum">?</div><div class="pname">Quantities requiring your input</div><div class="pkind">Not derivable from the documents supplied</div></div>
 <div class="tw"><table class="cmp"><thead><tr><th>Item</th><th class="u">Unit</th><th>Why it is open</th></tr></thead><tbody>
 <tr><td>Parking shed, 2 nos</td><td class="u">Sqm plan</td><td>No drawing in the tender pack; carried as an allowance</td></tr>
