@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Questions on MES Estimating Practice</title>
+<meta name="description" content="Twenty-three questions on how quantities are taken off and resources estimated for MES work under the SSR">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --paper: #f7f6f2; --ink: #1c2230; --ink-2: #4a5263; --ink-3: #7b8394;
+  --line: #d9dbd6; --line-2: #e8e9e4; --panel: #ffffff; --panel-2: #eef0ea;
+  --accent: #1f4e79; --accent-ink: #ffffff;
+  --default-bg: #fbe9c8; --default-ink: #6b4300;
+  --confirm-bg: #d9ecd5; --confirm-ink: #1e4d22;
+  --open-bg: #e3e6ef; --open-ink: #2a3560;
+  --focus: #1f4e79;
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --sans: 'IBM Plex Sans', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #15181e; --ink: #e6e8ee; --ink-2: #b4bac8; --ink-3: #7f879a;
+    --line: #2e3340; --line-2: #262a35; --panel: #1c2028; --panel-2: #222731;
+    --accent: #7fb0e0; --accent-ink: #0e1a28;
+    --default-bg: #4a3410; --default-ink: #f6d9a3;
+    --confirm-bg: #1f3a22; --confirm-ink: #bfe3bb;
+    --open-bg: #2a3350; --open-ink: #c9d2f2;
+    --focus: #7fb0e0;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #15181e; --ink: #e6e8ee; --ink-2: #b4bac8; --ink-3: #7f879a;
+  --line: #2e3340; --line-2: #262a35; --panel: #1c2028; --panel-2: #222731;
+  --accent: #7fb0e0; --accent-ink: #0e1a28;
+  --default-bg: #4a3410; --default-ink: #f6d9a3;
+  --confirm-bg: #1f3a22; --confirm-ink: #bfe3bb;
+  --open-bg: #2a3350; --open-ink: #c9d2f2;
+  --focus: #7fb0e0;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.55; margin: 0; padding-inline: 16px; padding-block: 0 64px; }
+a { color: var(--accent); }
+code { font-family: var(--mono); font-size: 0.86em; background: var(--panel-2); padding: 1px 5px; border-radius: 3px; color: var(--ink-2); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(30px, 4.5vw, 44px); line-height: 1.1; }
+h2 { font-size: 26px; line-height: 1.2; }
+h3 { font-size: 19px; line-height: 1.3; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; }
+.masthead { padding-block: 40px 28px; border-bottom: 1px solid var(--line); display: grid; gap: 18px; }
+.masthead p { max-width: 66ch; color: var(--ink-2); margin: 0; }
+.legend { display: grid; gap: 8px; }
+.legend-row { display: flex; gap: 12px; align-items: baseline; color: var(--ink-2); }
+.legend-row b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.state { display: inline-block; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; white-space: nowrap; align-self: start; }
+.state-default { background: var(--default-bg); color: var(--default-ink); }
+.state-confirm { background: var(--confirm-bg); color: var(--confirm-ink); }
+.state-open { background: var(--open-bg); color: var(--open-ink); }
+.layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; padding-block: 28px; }
+nav.side { position: sticky; top: env(safe-area-inset-top, 0px); align-self: start; display: grid; gap: 4px; padding-top: 8px; }
+nav.side a { text-decoration: none; color: var(--ink-2); padding: 6px 8px; border-left: 2px solid var(--line); display: grid; gap: 2px; font-size: 14px; }
+nav.side a:hover { color: var(--ink); border-color: var(--accent); }
+.nav-range { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.side-box { margin-top: 20px; border: 1px solid var(--line); border-radius: 6px; padding: 12px; background: var(--panel); display: grid; gap: 10px; font-size: 14px; }
+.side-box label { display: grid; gap: 4px; color: var(--ink-2); font-size: 13px; }
+.side-box input { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); color: var(--ink); }
+.progress { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.progress b { color: var(--ink); }
+button { font: inherit; font-weight: 500; padding: 8px 12px; border-radius: 4px; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer; }
+button.quiet { background: transparent; color: var(--accent); }
+button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+main { display: grid; gap: 48px; min-width: 0; }
+.group-head { display: grid; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--line); margin-bottom: 20px; }
+.lead { color: var(--ink-2); max-width: 68ch; margin: 0; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px; margin-bottom: 18px; display: grid; gap: 16px; }
+.card-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: start; }
+.card-no { font-family: var(--mono); font-size: 13px; color: var(--ink-3); padding-top: 4px; min-width: 24px; }
+.card-title { display: grid; gap: 6px; min-width: 0; }
+.card-refs { display: flex; flex-wrap: wrap; gap: 6px; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; margin: 0; }
+.facts div { display: grid; gap: 4px; }
+.facts dt { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3); }
+.facts dd { margin: 0; color: var(--ink); }
+.ask { margin: 0; padding: 12px 14px; background: var(--panel-2); border-radius: 4px; }
+.ruling { border: 1px solid var(--line-2); border-radius: 4px; padding: 12px 14px 14px; margin: 0; display: grid; gap: 12px; }
+.ruling legend { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3); padding: 0 6px; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.choices label { display: flex; gap: 6px; align-items: center; }
+.fields { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 10px 14px; }
+.field { display: grid; gap: 4px; font-size: 13px; color: var(--ink-2); }
+.field.wide { grid-column: 1 / -1; }
+.field input, .field select { font: inherit; font-size: 14px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 7px 9px; width: 100%; }
+.card.ruled { border-color: var(--accent); }
+.card.ruled .card-no::after { content: ' \2713'; color: var(--accent); }
+.foot { padding-block: 28px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 14px; max-width: 70ch; }
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 4px; font-size: 14px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.toast.show { opacity: 1; }
+textarea.out { width: 100%; min-height: 140px; font-family: var(--mono); font-size: 12px; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 10px; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 20px; }
+  nav.side { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts { grid-template-columns: 1fr; }
+  .fields { grid-template-columns: 1fr; }
+  .card-head { grid-template-columns: auto minmax(0, 1fr); }
+  .card-head .state { grid-column: 2; }
+}
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<header class="masthead">
+  
+  <p class="eyebrow">Ninana Technologies · September 2026</p>
+  <h1>Questions on MES Estimating Practice</h1>
+  <p>We are writing down, figure by figure, how quantities are taken off and resources estimated for MES work under the SSR: the bill of quantities, the bar bending schedule, the resource bill and what follows from them. Where the SSR speaks we have read it; where it is silent we have made an assumption. Before we rely on any of it, we would like an experienced hand to look at the 23 points below.</p>
+  <p>Each point says what we do now, what the SSR says, what else could be done, and what the choice moves on a worked example: a single-storey RCC frame of three bays by one, with footings on plain concrete beds, plinth beams, columns, roof beams and a roof slab with openings.</p>
+  <p>Mark an answer on each. The page keeps your draft in this browser. When you are done, use the button at the foot to copy or save your answers and send them to akshay@ninana.in. Half an hour of your time on the ones you know is worth more to us than a guess on all of them.</p>
+  <div class="legend"><div class="legend-row"><span class="state state-default">Our assumption</span><span>Taken without a source that settles it. Stands until you say otherwise. <b>7</b></span></div><div class="legend-row"><span class="state state-confirm">From the SSR</span><span>Read from the book. To be confirmed against the printed page. <b>7</b></span></div><div class="legend-row"><span class="state state-open">Open</span><span>No MES source gives it. We need your word or your firm’s practice. <b>9</b></span></div></div>
+</header>
+
+<div class="layout">
+<nav class="side" aria-label="Sections">
+  <a href="#measure"><span class="nav-range">1–6</span>Measuring the work</a><a href="#steel"><span class="nav-range">7–12</span>Detailing the steel</a><a href="#consume"><span class="nav-range">13–18</span>What one unit consumes</a><a href="#time"><span class="nav-range">19–23</span>Time, tests and pours</a>
+  <div class="side-box">
+    <label>Your name<input type="text" id="who" autocomplete="off"></label>
+    <label>Date<input type="date" id="when"></label>
+    <div class="progress"><b id="done">0</b> of 23 ruled</div>
+    <button type="button" id="copy-top">Copy my answers</button>
+  </div>
+</nav>
+
+<main>
+
+<section class="group" id="measure">
+  <header class="group-head">
+    <p class="eyebrow">MES SSR Part II 2020</p>
+    <h2>Measuring the work</h2>
+    <p class="lead">How quantities are taken off. Every rule here changes a figure in the bill of quantities.</p>
+  </header>
+  
+<article class="card" id="r1" data-n="1" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">1</div>
+    <div class="card-title">
+      <h3>Steel billed in three bands</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-confirm">From the SSR</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Bars of 10 mm and over; bars of 6 to 8 mm; stirrups, spacers and binders up to 10 mm. A bar goes to the first band that fits.</dd></div>
+    <div><dt>What the book says</dt><dd>Section 10 of Part II prices the three apart.</dd></div>
+    <div><dt>Alternatives</dt><dd>Bind by role first (a binder is a binder at any size) or by size first.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>The largest mover on the example: moving the 6 to 8 mm band up one size puts 307 kg into it, up 197 in a hundred, and takes 19 in a hundred from the 10 mm and over item.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Is an 8 mm main bar in a slab billed with the 6 to 8 mm item, and an 8 mm stirrup with the binders item?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r1-ruling" id="r1-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r1-ruling" id="r1-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r1-ruling" id="r1-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r1-ruling" id="r1-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r1-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r1-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r1-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r2" data-n="2" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">2</div>
+    <div class="card-title">
+      <h3>Excavation for a footing: no working space, lifts of 1.5 m</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-default">Our assumption</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>The pit is the plan of the bed, widened by nothing, times the depth from ground to the underside of the bed. The depth is paid in lifts of 1.5 m. A dig whose narrower side is not over 1.5 m is a trench whatever its length; not over 10 sqm on plan is a pit; anything larger is excavation over areas.</dd></div>
+    <div><dt>What the book says</dt><dd>Part II items 03004 to 03007 and clauses 3.1.1 and 3.1.9. Part I has no clause on working space for pits (only 5.43, for wells).</dd></div>
+    <div><dt>Alternatives</dt><dd>A working space on each side (30 cm is common); a trench judged by its length as well as its width.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>30 cm of working space each side takes the example from 34.68 to 63.48 cum of excavation, up 83 in a hundred.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Is 0 the MES rule for footings, or does the tender have to say so each time?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r2-ruling" id="r2-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r2-ruling" id="r2-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r2-ruling" id="r2-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r2-ruling" id="r2-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r2-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r2-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r2-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r3" data-n="3" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">3</div>
+    <div class="card-title">
+      <h3>Surplus earth removed does not swell</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-default">Our assumption</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Surplus is the dug volume less the backfill, with a bulking factor of 1.0. Backfill is item 03009 with a 10 per cent deduction (5 for heavy soil) under clause 3.6.</dd></div>
+    <div><dt>What the book says</dt><dd>Part II clause 3.6 and note (f) to item 03009 give the deduction. Neither part gives a bulking factor for surplus.</dd></div>
+    <div><dt>Alternatives</dt><dd>A factor of 1.25 for ordinary soil, as many estimators take.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>At 1.25 the removal item goes from 11.76 to 14.70 cum, up 25 in a hundred.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Does MES pay removal on the net dug volume or on a bulked volume?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r3-ruling" id="r3-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r3-ruling" id="r3-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r3-ruling" id="r3-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r3-ruling" id="r3-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r3-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r3-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r3-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r4" data-n="4" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">4</div>
+    <div class="card-title">
+      <h3>Slab edges under 20 cm by the running metre</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-confirm">From the SSR</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>An edge not over 20 cm high is measured by its length under items 07021 to 07023 by height band; only an edge over 20 cm is measured in square metres under 07008.</dd></div>
+    <div><dt>What the book says</dt><dd>Part II items 07008 and 07021 to 07023, lines 6592 to 6711.</dd></div>
+    <div><dt>Alternatives</dt><dd>Perimeter times thickness in square metres, as we did before.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>The the example roof slab edge went from 5.26 sqm to 42.10 rm under 07021.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Confirm the reading, and that the edge of an opening in the slab is measured the same way.</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r4-ruling" id="r4-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r4-ruling" id="r4-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r4-ruling" id="r4-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r4-ruling" id="r4-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r4-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r4-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r4-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r5" data-n="5" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">5</div>
+    <div class="card-title">
+      <h3>Each dimension is rounded before the quantity</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-confirm">From the SSR</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Lengths to 0.01 m, thicknesses and sections to 0.005 m, before multiplying. Bar lengths to 5 mm. Steel to the whole kilogram on the bill item.</dd></div>
+    <div><dt>What the book says</dt><dd>Part II general rules 1.9 and Section 10 clauses 10.1.2 and 10.1.3.</dd></div>
+    <div><dt>Alternatives</dt><dd>Compute in full and round the quantity once at the end.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>Steel 10 mm and over: 1586.35 kg before the rounding, 1586 kg after. Small on the example; larger on a long slab.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Confirm the steps, and whether the rounding is half-up.</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r5-ruling" id="r5-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r5-ruling" id="r5-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r5-ruling" id="r5-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r5-ruling" id="r5-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r5-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r5-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r5-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r6" data-n="6" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">6</div>
+    <div class="card-title">
+      <h3>Openings deducted above 0.1 sqm in concrete and 0.4 sqm in formwork</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-open">Open</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Written from memory of IS 1200 Parts 2 and 5.</dd></div>
+    <div><dt>What the book says</dt><dd>Neither part of the SSR read gives these thresholds.</dd></div>
+    <div><dt>Alternatives</dt><dd>Deduct every opening; or the SSR general rule, if one exists that we did not find.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>On the example the roof openings are all above both limits, so nothing moves; on a slab with many small sleeves it would.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> What thresholds does MES apply?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r6-ruling" id="r6-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r6-ruling" id="r6-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r6-ruling" id="r6-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r6-ruling" id="r6-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r6-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r6-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r6-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+</section>
+<section class="group" id="steel">
+  <header class="group-head">
+    <p class="eyebrow">MES SSR Part I 2009, Section 10</p>
+    <h2>Detailing the steel</h2>
+    <p class="lead">What goes into the bar bending schedule. Part I now gives most of it; the contract overrides all of it.</p>
+  </header>
+  
+<article class="card" id="r7" data-n="7" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">7</div>
+    <div class="card-title">
+      <h3>Lap length: the greater of the development length and 30 diameters</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-open">Open</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Every lap is taken as in flexural tension: the development length or 30 d, whichever is greater. The development length is held at 50 d. Where the tender sets a lap (the example says 45 d) it stands.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I clause 10.19.2: tension, development length per IS 456 clause 26.2.1 or 30 d, the greater; compression, 24 d. IS 456 itself has not been read.</dd></div>
+    <div><dt>Alternatives</dt><dd>Work the development length from IS 456 by grade of steel and concrete; or a flat 50 d; or keep the tender figure only.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>Nothing on the example today, since the tender’s 45 d stands.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> For Fe500 in M25, what development length does MES accept, and does a tender’s 45 d clear it?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r7-ruling" id="r7-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r7-ruling" id="r7-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r7-ruling" id="r7-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r7-ruling" id="r7-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r7-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r7-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r7-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r8" data-n="8" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">8</div>
+    <div class="card-title">
+      <h3>Deformed bars have no hooks; binders keep theirs</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-confirm">From the SSR</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>A deformed main bar with hooks is refused; binders, stirrups and links take a hook with a straight of at least 8 d beyond the curve. The hook lengths (8, 10 and 16 d for 90, 135 and 180 degrees) are our figures from IS 2502.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I clause 10.18: deformed bars are bent to a radius of 4 d with 4 d straight beyond; their ends are not bent to form hooks.</dd></div>
+    <div><dt>Alternatives</dt><dd>Drop hooks on all bars; or keep hooks on all bars as IS 2502 shapes.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>A 135 degree hook at 12 d instead of 10 d moves the binders item from 418 to 428 kg, up 2.4 in a hundred.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Confirm, and give the hook length MES takes for stirrups.</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r8-ruling" id="r8-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r8-ruling" id="r8-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r8-ruling" id="r8-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r8-ruling" id="r8-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r8-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r8-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r8-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r9" data-n="9" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">9</div>
+    <div class="card-title">
+      <h3>Bend deduction at a 4 d radius</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-open">Open</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Deductions of 1, 2, 3 and 4 diameters for bends of 45, 90, 135 and 180 degrees, from common practice on IS 2502. Part I’s radius of 4 d for deformed bars is held but the deductions were not reworked for it.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I clause 10.18 gives the radius and no deduction.</dd></div>
+    <div><dt>Alternatives</dt><dd>Rework the deductions by geometry at 4 d; keep the common figures; deduct nothing.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>One diameter more on a 135 degree bend takes the binders item from 418 to 413 kg, down 1.2 in a hundred.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Which deductions does MES accept on a bar bending schedule?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r9-ruling" id="r9-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r9-ruling" id="r9-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r9-ruling" id="r9-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r9-ruling" id="r9-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r9-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r9-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r9-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r10" data-n="10" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">10</div>
+    <div class="card-title">
+      <h3>End cover at bar ends</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-open">Open</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Bars run to the concrete face less the side cover; no end cover is taken off at bar ends.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I clause 4.11.8.1 gives cover by member; we hold it for the record. We keep the tender’s covers.</dd></div>
+    <div><dt>Alternatives</dt><dd>Take 25 mm or 2 d off each bar end.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>Would shorten the example’s slab, beam and column bars by 10 to 14 mm each.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Should end cover come off the cutting length?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r10-ruling" id="r10-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r10-ruling" id="r10-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r10-ruling" id="r10-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r10-ruling" id="r10-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r10-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r10-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r10-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r11" data-n="11" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">11</div>
+    <div class="card-title">
+      <h3>Unit mass of bars</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-confirm">From the SSR</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>IS 1786 nominal masses, written from memory: 0.395 kg/m for 8 mm, 0.617 for 10, 0.888 for 12, 1.58 for 16.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I names IS 1786 (clause 10.17.2) and gives no mass per metre, only the tolerance on weight (10.17.5).</dd></div>
+    <div><dt>Alternatives</dt><dd>None; the figures need checking against the published table.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>A tenth more on 16 mm bars moves the 10 mm and over item from 1586 to 1676 kg, up 5.7 in a hundred.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Check the four figures.</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r11-ruling" id="r11-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r11-ruling" id="r11-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r11-ruling" id="r11-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r11-ruling" id="r11-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r11-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r11-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r11-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r12" data-n="12" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">12</div>
+    <div class="card-title">
+      <h3>Bar shapes reduced to four</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-confirm">From the SSR</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Straight, L, U and cranked; stirrups closed with two 135 degree hooks. A hooked end takes both the hook length and the bend deduction.</dd></div>
+    <div><dt>What the book says</dt><dd>IS 2502 shape codes; the SSR does not detail bars.</dd></div>
+    <div><dt>Alternatives</dt><dd>A hooked end takes the hook length only.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>Up to 6.5 in a hundred on the binders item.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Does a hooked end take a bend deduction as well as the hook length?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r12-ruling" id="r12-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r12-ruling" id="r12-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r12-ruling" id="r12-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r12-ruling" id="r12-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r12-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r12-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r12-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+</section>
+<section class="group" id="consume">
+  <header class="group-head">
+    <p class="eyebrow">Part I where it speaks; CPWD DAR 2023 standing in</p>
+    <h2>What one unit consumes</h2>
+    <p class="lead">The figures behind the resource bill, the material requirement and the labour histogram. MES does not use the DAR; its figures stand only where no MES source and no firm figure exists.</p>
+  </header>
+  
+<article class="card" id="r13" data-n="13" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">13</div>
+    <div class="card-title">
+      <h3>Cement in M25 design mix: 330 kg, with Part I’s 300 kg as a floor</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-default">Our assumption</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>6.6 bags (330 kg) a cum, the DAR’s figure for its own M25 analysis. Part I’s Table 7 minimum for reinforced concrete of M25 (300 kg in mild and moderate exposure) is held as a floor: a figure is raised to it only if it falls below.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I clause 4.11.2, Table 7: minimum cement content by exposure and grade. It sets a minimum, not a consumption.</dd></div>
+    <div><dt>Alternatives</dt><dd>Take the 300 kg minimum as the consumption (6.0 bags); or leave cement blank until the mix design is approved.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>At 6.0 bags the example’s cement falls from 207.09 to 188.99 bags.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> For estimating before the mix design, what cement content does MES practice take for M25?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r13-ruling" id="r13-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r13-ruling" id="r13-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r13-ruling" id="r13-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r13-ruling" id="r13-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r13-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r13-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r13-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r14" data-n="14" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">14</div>
+    <div class="card-title">
+      <h3>Plasticizer 1.65 kg a cum</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-open">Open</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>0.5 per cent of 330 kg of cement, from the DAR.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I gives no dose.</dd></div>
+    <div><dt>Alternatives</dt><dd>Scale with the cement; leave to the mix design.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>Example: 49.83 kg.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Is a dose to be estimated at all before the mix design?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r14-ruling" id="r14-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r14-ruling" id="r14-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r14-ruling" id="r14-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r14-ruling" id="r14-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r14-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r14-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r14-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r15" data-n="15" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">15</div>
+    <div class="card-title">
+      <h3>PCC 1:4:8 materials from the DAR</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-open">Open</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>3.4 bags cement, 0.47 cum sand, 0.65 cum of 40 mm and 0.24 cum of 20 mm aggregate a cum, from DAR analysis 4.1.8.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I clause 4.11.2.4 gives the proportions by volume and the bag as the unit, but no dry volume to a cum and no split of coarse aggregate. It names IS 1911 for unit weights, which we have not read.</dd></div>
+    <div><dt>Alternatives</dt><dd>A dry volume of 1.52 with the proportions; the firm’s own yield.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>the example has 8.1 cum of bed concrete.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> What yield and aggregate split does MES practice take for 1:4:8?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r15-ruling" id="r15-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r15-ruling" id="r15-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r15-ruling" id="r15-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r15-ruling" id="r15-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r15-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r15-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r15-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r16" data-n="16" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">16</div>
+    <div class="card-title">
+      <h3>Labour and machine days from the DAR, until the firm gives its own</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-default">Our assumption</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Every labour and machine figure is the DAR’s: excavation by machine at 0.006 mazdoor days a cum with an excavator and loader at 0.012 days; steel forms put up by a fitter (0.075 to 0.22 days a sqm); reinforcement at 0.01 blacksmith and 0.01 mazdoor days a kg. Each figure is marked as it is a CPWD figure standing in.</dd></div>
+    <div><dt>What the book says</dt><dd>Neither part of the SSR gives labour or machine days.</dd></div>
+    <div><dt>Alternatives</dt><dd>The firm’s own norms; the tender’s, where it gives any; manual excavation (we had 0.62 mazdoor days a cum).</dd></div>
+    <div><dt>What it moves on the example</dt><dd>Mazdoor on the example: 191.56 days before, 170.51 after; carpenter 68.64 to 21.04 days; a fitter of 37.36 days appears.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Give the firm’s norms for these eight figures, or say which source MES estimators use.</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r16-ruling" id="r16-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r16-ruling" id="r16-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r16-ruling" id="r16-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r16-ruling" id="r16-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r16-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r16-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r16-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r17" data-n="17" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">17</div>
+    <div class="card-title">
+      <h3>Shuttering and binding wire kept at our figures</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-default">Our assumption</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Shuttering 1 sqm-use to the sqm of contact area (0.2 to the running metre of edge); binding wire 0.009 kg to the kg of steel.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I clause 10.20 specifies the wire (annealed, not under 0.9 mm) and gives no quantity. The DAR prices both as money only.</dd></div>
+    <div><dt>Alternatives</dt><dd>Drop both from the material list; take the firm’s figures.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>Example: 227.38 sqm-use of shuttering, 19.44 kg of wire.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Keep both on the material list? At what rate?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r17-ruling" id="r17-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r17-ruling" id="r17-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r17-ruling" id="r17-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r17-ruling" id="r17-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r17-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r17-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r17-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r18" data-n="18" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">18</div>
+    <div class="card-title">
+      <h3>Steel wastage 5 per cent</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-default">Our assumption</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>1.05 kg of bar bought for each kg fixed, from the DAR. We had 3 per cent.</dd></div>
+    <div><dt>What the book says</dt><dd>Neither part of the SSR gives a wastage allowance for steel.</dd></div>
+    <div><dt>Alternatives</dt><dd>3 per cent; 2.5 per cent; the firm’s own record.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>the example steel to buy: 2225.57 kg at 3 per cent, 2268.77 at 5.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> What allowance does the firm carry?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r18-ruling" id="r18-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r18-ruling" id="r18-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r18-ruling" id="r18-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r18-ruling" id="r18-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r18-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r18-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r18-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+</section>
+<section class="group" id="time">
+  <header class="group-head">
+    <p class="eyebrow">MES SSR Part I 2009, Section 4</p>
+    <h2>Time, tests and pours</h2>
+    <p class="lead">What moves the dates, the pour plan and the inspection and test plan, not the bill.</p>
+  </header>
+  
+<article class="card" id="r19" data-n="19" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">19</div>
+    <div class="card-title">
+      <h3>Stripping times from Table 10</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-confirm">From the SSR</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Vertical faces 2 days; slab soffits 3 with props left; beam soffits 7 with props left; props under slabs 7 days to 4.5 m span and 14 over; under beams 14 to 6 m and 21 over. Ordinary Portland cement, normal weather.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I clause 4.11.6.3, Table 10, checked against the page. Table 12 gives shorter times at 16 degrees C; we do not use it.</dd></div>
+    <div><dt>Alternatives</dt><dd>The 1 day for vertical faces we had from IS 456.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>One day more on every column and wall pour in the programme.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Confirm Table 10 as the rule for the programme.</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r19-ruling" id="r19-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r19-ruling" id="r19-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r19-ruling" id="r19-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r19-ruling" id="r19-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r19-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r19-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r19-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r20" data-n="20" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">20</div>
+    <div class="card-title">
+      <h3>Concrete sampling: IS 456 bands, with Part I’s waiver and limit held</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-open">Open</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Samples by the IS 456 table (1 to 5 cum one sample, 6 to 15 two, 16 to 30 three, 31 to 50 four, then one more per 50). Part I’s waiver below 15 cum and its 60 cum limit are held as figures and not yet applied.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I clause 4.11.17: three specimens to a sample, tested at 28 days; the frequency by quantity.</dd></div>
+    <div><dt>Alternatives</dt><dd>Apply the waiver; treat the 60 cum as a floor on frequency.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>The inspection and test plan’s cube count.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> How are the 15 cum waiver and the 60 cum limit read on an MES job?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r20-ruling" id="r20-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r20-ruling" id="r20-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r20-ruling" id="r20-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r20-ruling" id="r20-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r20-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r20-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r20-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r21" data-n="21" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">21</div>
+    <div class="card-title">
+      <h3>Steel test lots from a CPWD table</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-open">Open</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Lot sizes for IS 1786 sampling taken from the CPWD specifications.</dd></div>
+    <div><dt>What the book says</dt><dd>Part I clause 10.17 names IS 1786 for the bars; we did not find a lot table in it.</dd></div>
+    <div><dt>Alternatives</dt><dd>IS 1786’s own sampling clause; the tender’s Schedule of tests.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>Example: the number of steel tests on the inspection and test plan.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> What lot size does MES use for testing reinforcement?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r21-ruling" id="r21-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r21-ruling" id="r21-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r21-ruling" id="r21-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r21-ruling" id="r21-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r21-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r21-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r21-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r22" data-n="22" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">22</div>
+    <div class="card-title">
+      <h3>Beams and slab cast together</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-default">Our assumption</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>The roof beams and slab of a storey are one pour group; columns, footings and beds are their own.</dd></div>
+    <div><dt>What the book says</dt><dd>A site convention; no book speaks.</dd></div>
+    <div><dt>Alternatives</dt><dd>Beams first, slab after.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>The pour breakdown and the dates of the planned progress curve.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Is this how the firm pours?</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r22-ruling" id="r22-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r22-ruling" id="r22-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r22-ruling" id="r22-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r22-ruling" id="r22-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r22-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r22-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r22-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+<article class="card" id="r23" data-n="23" data-refs='[]'>
+  <header class="card-head">
+    <div class="card-no">23</div>
+    <div class="card-title">
+      <h3>Lead times are our guesses</h3>
+      <div class="card-refs"></div>
+    </div>
+    <span class="state state-open">Open</span>
+  </header>
+  <dl class="facts">
+    <div><dt>What we do now</dt><dd>Steel 30 days (the sample firm’s own figure), the rest a few days each, all guesses.</dd></div>
+    <div><dt>What the book says</dt><dd>No book speaks.</dd></div>
+    <div><dt>Alternatives</dt><dd>The firm’s supplier terms.</dd></div>
+    <div><dt>What it moves on the example</dt><dd>The long-lead items list and the material delivery schedule.</dd></div>
+  </dl>
+  <p class="ask"><strong>The question.</strong> Give the firm’s lead times.</p>
+  <fieldset class="ruling">
+    <legend>Ruling</legend>
+    <div class="choices">
+      <label><input type="radio" name="r23-ruling" id="r23-approved" value="approved"> Approved as it stands</label>
+      <label><input type="radio" name="r23-ruling" id="r23-value" value="approved-with-value"> Approved with this value</label>
+      <label><input type="radio" name="r23-ruling" id="r23-rejected" value="rejected"> Rejected</label>
+      <label><input type="radio" name="r23-ruling" id="r23-depends" value="depends"> Depends</label>
+    </div>
+    <div class="fields">
+      <label class="field"><span>Value, or what it depends on</span><input type="text" id="r23-val" autocomplete="off"></label>
+      <label class="field"><span>Holds</span>
+        <select id="r23-scope"><option value="">Choose</option><option value="everywhere">Everywhere</option><option value="mes">MES work only</option><option value="structure">This kind of structure only</option></select>
+      </label>
+      <label class="field wide"><span>Note</span><input type="text" id="r23-note" autocomplete="off"></label>
+    </div>
+  </fieldset>
+</article>
+</section>
+<section class="group" id="out">
+  <header class="group-head">
+    <p class="eyebrow">When you are done</p>
+    <h2>Send us your answers</h2>
+    <p class="lead">Copy your answers and paste them into an email to akshay@ninana.in, or save them as a file and attach it. Either carries your name and date from the panel above.</p>
+  </header>
+  <p><button type="button" id="copy">Copy my answers</button> <button type="button" class="quiet" id="save">Save as a file</button> <button type="button" class="quiet" id="show">Show the text</button> <button type="button" class="quiet" id="clear">Clear my drafts</button></p>
+  <p class="lead">Email: <code id="mail">akshay@ninana.in</code></p>
+  <textarea class="out" id="json" readonly hidden aria-label="Answers"></textarea>
+</section>
+</main>
+</div>
+
+<footer class="foot">
+  Your answers are read by us alone and used to settle how we estimate. Nothing on this page is stored anywhere but in your own browser until you send it.
+</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var KEY = 'mes-estimating-answers-v1';
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var total = cards.length;
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; } }
+  function save(d) { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {} }
+  function read() {
+    var d = { who: document.getElementById('who').value, when: document.getElementById('when').value, items: {} };
+    cards.forEach(function (c) {
+      var k = c.id;
+      var r = c.querySelector('input[name="' + k + '-ruling"]:checked');
+      d.items[k] = {
+        ruling: r ? r.value : null,
+        value: document.getElementById(k + '-val').value,
+        scope: document.getElementById(k + '-scope').value,
+        note: document.getElementById(k + '-note').value
+      };
+    });
+    return d;
+  }
+  function apply(d) {
+    if (!d) return;
+    if (d.who) document.getElementById('who').value = d.who;
+    if (d.when) document.getElementById('when').value = d.when;
+    cards.forEach(function (c) {
+      var k = c.id, it = d.items && d.items[k];
+      if (!it) return;
+      if (it.ruling) { var r = c.querySelector('input[name="' + k + '-ruling"][value="' + it.ruling + '"]'); if (r) r.checked = true; }
+      document.getElementById(k + '-val').value = it.value || '';
+      document.getElementById(k + '-scope').value = it.scope || '';
+      document.getElementById(k + '-note').value = it.note || '';
+    });
+  }
+  function refresh() {
+    var d = read(), n = 0;
+    cards.forEach(function (c) { var it = d.items[c.id]; var on = !!it.ruling; c.classList.toggle('ruled', on); if (on) n++; });
+    document.getElementById('done').textContent = n;
+    save(d);
+    return d;
+  }
+  function scopeWord(s) { return s === 'mes' ? 'MES work only' : s === 'structure' ? 'this kind of structure only' : s === 'everywhere' ? 'everywhere' : null; }
+  var PUBLIC = true;
+  function toJSON() {
+    var d = read(), out = [];
+    cards.forEach(function (c) {
+      var it = d.items[c.id];
+      if (!it.ruling) return;
+      var n = Number(c.getAttribute('data-n'));
+      var title = c.querySelector('h3').textContent;
+      if (PUBLIC) {
+        out.push({ question: n, title: title, answer: it.ruling, value: it.value || null, holds: scopeWord(it.scope), note: it.note || null, by: d.who || null, on: d.when || null });
+        return;
+      }
+      var refs = JSON.parse(c.getAttribute('data-refs'));
+      refs.forEach(function (ref) {
+        out.push({ file: ref[0], id: ref[1], item: n, ruling: it.ruling, value: it.value || null, scope: scopeWord(it.scope), note: it.note || null, by: d.who || null, on: d.when || null });
+      });
+    });
+    return JSON.stringify(out, null, 2);
+  }
+  function saveFile() {
+    var text = toJSON();
+    if (text === '[]') { toast('No answers marked yet'); return; }
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+    a.download = 'mes-estimating-answers.json';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    toast('Saved');
+  }
+  function toast(msg) { var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(function () { t.classList.remove('show'); }, 1800); }
+  function show() { var ta = document.getElementById('json'); ta.value = toJSON(); ta.hidden = false; return ta; }
+  function copy() {
+    var text = toJSON(), ta = show();
+    if (text === '[]') { toast(PUBLIC ? 'No answers marked yet' : 'No rulings marked yet'); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { toast('Copied'); }, function () { ta.focus(); ta.select(); toast('Select and copy the text below'); });
+    } else { ta.focus(); ta.select(); toast('Select and copy the text below'); }
+  }
+  apply(load());
+  refresh();
+  document.addEventListener('input', refresh);
+  document.addEventListener('change', refresh);
+  document.getElementById('copy').addEventListener('click', copy);
+  document.getElementById('copy-top').addEventListener('click', function () { copy(); document.getElementById('out').scrollIntoView(); });
+  document.getElementById('show').addEventListener('click', show);
+  var saveBtn = document.getElementById('save'); if (saveBtn) saveBtn.addEventListener('click', saveFile);
+  document.getElementById('clear').addEventListener('click', function () {
+    cards.forEach(function (c) { var k = c.id; var rs = c.querySelectorAll('input[type=radio]'); for (var i = 0; i < rs.length; i++) rs[i].checked = false; document.getElementById(k + '-val').value = ''; document.getElementById(k + '-scope').value = ''; document.getElementById(k + '-note').value = ''; });
+    document.getElementById('json').hidden = true;
+    refresh(); toast('Drafts cleared');
+  });
+})();
+</script>
+</body>
+</html>
