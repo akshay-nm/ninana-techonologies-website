@@ -99,6 +99,8 @@ main { display: grid; gap: 48px; min-width: 0; }
 .card.ruled { border-color: var(--accent); }
 .card.ruled .card-no::after { content: ' \2713'; color: var(--accent); }
 .foot { padding-block: 28px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 14px; max-width: 70ch; }
+.hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.sent { color: var(--confirm-ink); background: var(--confirm-bg); padding: 4px 10px; border-radius: 3px; font-size: 14px; }
 .toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 4px; font-size: 14px; opacity: 0; transition: opacity .2s; pointer-events: none; }
 .toast.show { opacity: 1; }
 textarea.out { width: 100%; min-height: 140px; font-family: var(--mono); font-size: 12px; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 10px; }
@@ -133,7 +135,7 @@ textarea.out { width: 100%; min-height: 140px; font-family: var(--mono); font-si
     <label>Your name<input type="text" id="who" autocomplete="off"></label>
     <label>Date<input type="date" id="when"></label>
     <div class="progress"><b id="done">0</b> of 23 ruled</div>
-    <button type="button" id="copy-top">Copy my answers</button>
+    <button type="button" id="copy-top">Send my answers</button>
   </div>
 </nav>
 
@@ -934,10 +936,11 @@ textarea.out { width: 100%; min-height: 140px; font-family: var(--mono); font-si
   <header class="group-head">
     <p class="eyebrow">When you are done</p>
     <h2>Send us your answers</h2>
-    <p class="lead">Copy your answers and paste them into an email to akshay@ninana.in, or save them as a file and attach it. Either carries your name and date from the panel above.</p>
+    <p class="lead">One tap sends your answers to us, with your name and date from the panel above. You can send again if you change an answer later; we keep the latest.</p>
   </header>
-  <p><button type="button" id="copy">Copy my answers</button> <button type="button" class="quiet" id="save">Save as a file</button> <button type="button" class="quiet" id="show">Show the text</button> <button type="button" class="quiet" id="clear">Clear my drafts</button></p>
-  <p class="lead">Email: <code id="mail">akshay@ninana.in</code></p>
+  <p><button type="button" id="send">Send my answers</button> <span class="sent" id="sent" hidden></span></p><p class="lead">If sending fails, copy or save your answers and email them to <code id="mail">akshay@ninana.in</code>.</p>
+  <p><button type="button" class="quiet" id="copy">Copy my answers</button> <button type="button" class="quiet" id="save">Save as a file</button> <button type="button" class="quiet" id="show">Show the text</button> <button type="button" class="quiet" id="clear">Clear my drafts</button></p>
+  <label class="hp" aria-hidden="true">Website<input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></label>
   <textarea class="out" id="json" readonly hidden aria-label="Answers"></textarea>
 </section>
 </main>
@@ -1033,7 +1036,39 @@ textarea.out { width: 100%; min-height: 140px; font-family: var(--mono); font-si
   document.addEventListener('input', refresh);
   document.addEventListener('change', refresh);
   document.getElementById('copy').addEventListener('click', copy);
-  document.getElementById('copy-top').addEventListener('click', function () { copy(); document.getElementById('out').scrollIntoView(); });
+  var ENDPOINT = 'https://api.pragati.ninana.in/api/public/review-answers';
+  function send() {
+    var d = read(), answers = [];
+    cards.forEach(function (c) {
+      var it = d.items[c.id];
+      if (!it.ruling) return;
+      answers.push({ question: Number(c.getAttribute('data-n')), title: c.querySelector('h3').textContent, answer: it.ruling, value: it.value || null, holds: scopeWord(it.scope), note: it.note || null });
+    });
+    if (!answers.length) { toast('No answers marked yet'); return; }
+    var hp = document.getElementById('website');
+    var body = { form: 'estimating-review', by: d.who || null, on: d.when || null, answers: answers, website: hp ? hp.value : '' };
+    var btn = document.getElementById('send'), note = document.getElementById('sent');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error('not ok');
+        btn.textContent = 'Send again';
+        note.textContent = 'Received, thank you. ' + answers.length + ' answers sent.';
+        note.hidden = false;
+        toast('Sent');
+      })
+      .catch(function () {
+        btn.textContent = 'Send my answers';
+        note.textContent = 'Sending failed. Please copy or save your answers and email them.';
+        note.hidden = false;
+        show();
+        toast('Could not send');
+      })
+      .then(function () { btn.disabled = false; });
+  }
+  var sendBtn = document.getElementById('send'); if (sendBtn) sendBtn.addEventListener('click', send);
+  document.getElementById('copy-top').addEventListener('click', function () { if (PUBLIC) { document.getElementById('out').scrollIntoView(); send(); } else { copy(); document.getElementById('out').scrollIntoView(); } });
   document.getElementById('show').addEventListener('click', show);
   var saveBtn = document.getElementById('save'); if (saveBtn) saveBtn.addEventListener('click', saveFile);
   document.getElementById('clear').addEventListener('click', function () {
