@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 const VividScene = dynamic(() => import('@/components/three/VividScene'), { ssr: false })
 const PragatiScene = dynamic(() => import('@/components/three/PragatiScene'), { ssr: false })
 const WaspScene = dynamic(() => import('@/components/three/WaspScene'), { ssr: false })
+const OptimusScene = dynamic(() => import('@/components/three/OptimusScene'), { ssr: false })
 
 const PRODUCTS = [
   {
@@ -50,6 +51,20 @@ const PRODUCTS = [
     },
     Scene: WaspScene,
   },
+  {
+    id: 'optimus',
+    name: 'Optimus',
+    industry: 'Exam prep',
+    line: 'Sit a real past paper and find out where your marks actually went.',
+    href: 'https://optimus.ninana.in',
+    label: 'optimus.ninana.in',
+    accent: {
+      text: 'text-teal-600 dark:text-teal-400',
+      border: 'hover:border-teal-500/50 dark:hover:border-teal-400/40',
+      tag: 'bg-teal-500/10 text-teal-700 dark:bg-teal-400/10 dark:text-teal-300',
+    },
+    Scene: OptimusScene,
+  },
 ]
 
 const fadeUp = {
@@ -68,14 +83,14 @@ export default function ProductIndex() {
             What we build
           </p>
           <h2 className="mb-4 text-4xl font-medium leading-[1.1] tracking-[-0.02em] text-slate-900 dark:text-white sm:text-5xl">
-            Three products, three industries.
+            Four products, four industries.
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-400">
             Each has its own site. That&apos;s where the details live.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
           {PRODUCTS.map((product, index) => {
             const { Scene, accent } = product
             return (

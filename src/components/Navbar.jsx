@@ -32,6 +32,12 @@ const PRODUCTS = [
     description: 'Legal practice platform',
     accent: 'text-amber-600 dark:text-amber-400',
   },
+  {
+    name: 'Optimus',
+    href: 'https://optimus.ninana.in',
+    description: 'Exam diagnosis for students',
+    accent: 'text-teal-600 dark:text-teal-400',
+  },
 ]
 
 const LINKS = [
